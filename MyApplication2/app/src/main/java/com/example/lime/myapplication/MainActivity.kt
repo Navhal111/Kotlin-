@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity(){
 
             queue.add(postRequest)
         }
+//        https@ //github.com/telerik/Android-samples/tree/master/Blogs/Json-Reader
 // https://www.youtube.com/watch?v=d8ALcQiuPWs
         button1.setOnClickListener {
             val queyj = Volley.newRequestQueue(this@MainActivity)
