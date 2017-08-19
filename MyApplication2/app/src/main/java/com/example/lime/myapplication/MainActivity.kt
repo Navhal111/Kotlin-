@@ -24,6 +24,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
+import android.widget.SpinnerAdapter
 
 
 @Suppress("NAME_SHADOWING")
@@ -91,7 +92,6 @@ class MainActivity : AppCompatActivity(){
             queyj.add(jsonobj)
         }
 
-
         button3.setOnClickListener {
 
             alert("chnage", j2.toString()) {
@@ -114,6 +114,12 @@ class MainActivity : AppCompatActivity(){
 
         }
 
+        rec.setOnClickListener{
+
+            val intent = Intent(this@MainActivity, Recycle::class.java)
+//                    intent.putExtra("name", "Ritesh")
+            startActivity(intent)
+        }
 
         button4.setOnClickListener {
 

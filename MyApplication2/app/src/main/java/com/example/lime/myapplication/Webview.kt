@@ -15,7 +15,6 @@ class Webview : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.web_view)
-
         Web.webViewClient = WebViewClient()
 //        Web.webChromeClient = WebChromeClient()
         Web.loadUrl("https://www.kjaldci.com/")
