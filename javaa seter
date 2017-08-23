@@ -69,9 +69,10 @@ public class SheetGoogle extends Activity
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
+
         mProgress = new ProgressDialog(this);
         mProgress.setMessage("Calling Google Sheets API ...");
-                getResultsFromApi();
+        getResultsFromApi();
 
 
     }
@@ -298,3 +299,4 @@ public class SheetGoogle extends Activity
         }
     }
 }
+
