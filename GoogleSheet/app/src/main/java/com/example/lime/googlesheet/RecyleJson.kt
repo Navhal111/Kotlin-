@@ -17,8 +17,8 @@ class RecyleJson (var name: JSONArray): RecyclerView.Adapter<RecyleJson.ViewHold
 
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
-        val json = name.getJSONObject(position)
-        holder.title.text= json.getString("email")
+
+        holder.title.text= name.getString(position)
     }
 
     override fun getItemCount(): Int {

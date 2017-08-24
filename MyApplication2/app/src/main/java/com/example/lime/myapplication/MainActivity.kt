@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(){
         j.put("password", "ritesh123")
 
         val j1 = JSONObject()
-        j1.put("new", j)
+        j1.put("email", "milan@gmail.com")
 
         val j2 = JSONArray()
         j2.put(0, j)

@@ -37,8 +37,6 @@ import pub.devrel.easypermissions.EasyPermissions
 class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
     internal lateinit var mCredential: GoogleAccountCredential
     internal lateinit var mProgress: ProgressDialog
-    var j1 = JSONObject()
-    var j2 = JSONArray()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sheet_google)
@@ -233,21 +231,26 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
         override fun onPostExecute(output: List<String>?) {
             mProgress.hide()
-            var i=0;
+            val j2 = JSONArray()
+            var j1 =JSONObject()
             if (output == null || output.isEmpty() ) {
                 toast("No results returned")
             } else {
 //                output.add(0, "Data retrieved using the Google Sheets API:")
+                var i=0;
+
                 for (data in output){
                     j1.put("email", data)
-                    j2.put(i, j1)
+                    j2.put(i,data)
                     i = i+1
                 }
+
                 recyclerView.layoutManager = LinearLayoutManager(this@SheetGoogle)
 
-                recyclerView.adapter = RecyleJson(j2)
 //                recyclerView.adapter = RecyleJson(j2)
-                toast(output.toString())
+                recyclerView.adapter = RecyleJson(j2)
+
+                toast("Show data")
             }
         }
 
