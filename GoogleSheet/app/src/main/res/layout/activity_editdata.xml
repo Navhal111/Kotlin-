@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#626c6b"
+    tools:context="com.example.lime.googlesheet.Editdata">
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
+        >
+
+        <ImageView android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@mipmap/ic_launcher_round"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:id="@+id/name1"
+            android:hint="name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="30dp"/>
+        <EditText android:layout_width="fill_parent"
+            android:id="@+id/name2"
+            android:layout_height="40dp"
+            android:hint="name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"/>
+        <EditText android:layout_width="fill_parent"
+            android:id="@+id/name3"
+            android:layout_height="40dp"
+            android:hint="name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"/>
+        <EditText android:layout_width="fill_parent"
+            android:id="@+id/name4"
+            android:layout_height="40dp"
+            android:hint="name"
+            android:background="#f3f3f3"
+            android:paddingLeft="5dp"
+            android:layout_marginTop="15dp"/>
+
+        <Button android:layout_width="190dp"
+            android:id="@+id/button"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="submit"
+            android:textColor="#fff"
+            android:background="#6e94f1"/>
+
+    </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

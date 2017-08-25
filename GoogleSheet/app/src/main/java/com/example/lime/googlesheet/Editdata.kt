@@ -1,5 +1,9 @@
 package com.example.lime.googlesheet
 
+import android.support.v7.app.AppCompatActivity
+import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_editdata.*
+import org.jetbrains.anko.toast
 import android.accounts.AccountManager
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -9,10 +13,9 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.AsyncTask
 import android.os.Build
-import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.app.AppCompatActivity
+
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AdapterView
@@ -45,54 +48,49 @@ import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
+class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
     internal lateinit var mCredential: GoogleAccountCredential
     internal lateinit var mProgress: ProgressDialog
-    lateinit var mainarray :List<Any>
-    interface OnItemClickListener {
-        fun onItemClicked(position: Int, view: View)
-    }
-
+    lateinit var mainarray: List<String>
+    var position1: Int = 0
+    lateinit var value2: Any
+    lateinit var value3: Any
+    lateinit var value4: Any
+    lateinit var value5: Any
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sheet_google)
+        setContentView(R.layout.activity_editdata)
 
-        mCredential = GoogleAccountCredential.usingOAuth2(
-                applicationContext, Arrays.asList(*SCOPES))
-                .setBackOff(ExponentialBackOff())
+        val myIntent = intent
+        val firstKeyName = myIntent.getStringExtra("Keyvalue").toString()
+        position1 = myIntent.getIntExtra("Position",0)
+        val lenght = firstKeyName.length
+        val str = firstKeyName.substring(1,lenght-1)
+        val data = str.split(',')
+        name1.setText(data[0])
+        name2.setText(data[1])
+        name3.setText(data[2])
+        name4.setText(data[3])
+        mainarray= str.split(',')
+        button.setOnClickListener{
+            value2 = name1.text.toString()
+            value3 = name2.text.toString()
+            value4 = name3.text.toString()
+            value5 = name4.text.toString()
+
+            mCredential = GoogleAccountCredential.usingOAuth2(
+                    applicationContext, Arrays.asList(*SCOPES))
+                    .setBackOff(ExponentialBackOff())
 
 
-        mProgress = ProgressDialog(this)
-        mProgress.setMessage("Calling Google Sheets API ...")
-        getResultsFromApi()
-
-        fun RecyclerView.addOnItemClickListener(onClickListener: OnItemClickListener) {
-            this.addOnChildAttachStateChangeListener(object: RecyclerView.OnChildAttachStateChangeListener {
-                override fun onChildViewDetachedFromWindow(view: View?) {
-                    view?.setOnClickListener(null)
-                }
-
-                override fun onChildViewAttachedToWindow(view: View?) {
-                    view?.setOnClickListener({
-                        val holder = getChildViewHolder(view)
-                        onClickListener.onItemClicked(holder.adapterPosition, view)
-                    })
-                }
-            })
+            mProgress = ProgressDialog(this)
+            mProgress.setMessage("Calling Google Sheets API ...")
+            getResultsFromApi()
+            toast("updated value at ")
         }
-        recyclerView.addOnItemClickListener(object: OnItemClickListener {
-            override fun onItemClicked(position: Int, view: View) {
-//               toast(mainarray.get(position).toString())
-                val intent = Intent(this@SheetGoogle, Editdata::class.java)
-
-                intent.putExtra("Keyvalue",mainarray.get(position).toString())
-                intent.putExtra("Position",position)
-                startActivity(intent)
-
-            }
-        })
     }
+
 
     private fun getResultsFromApi() = if (!isGooglePlayServicesAvailable) {
         acquireGooglePlayServices()
@@ -204,7 +202,7 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
             connectionStatusCode: Int) {
         val apiAvailability = GoogleApiAvailability.getInstance()
         val dialog = apiAvailability.getErrorDialog(
-                this@SheetGoogle,
+                this@Editdata,
                 connectionStatusCode,
                 REQUEST_GOOGLE_PLAY_SERVICES)
         dialog.show()
@@ -256,39 +254,34 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
                         .get(spreadsheetId, range)
                         .execute()
 
-                val values = response.getValues()
-                mainarray = response.getValues()
-                if (values != null) {
-                    for (row in values) {
-                        results.add(row[0].toString() + ", " + row[3])
-                    }
-                }
+                //Where each value represents the list of objects that is to be written to a range
+                //I simply want to edit a single row, so I use a single list of objects
+                val values1 = ArrayList<List<Any>>()
 
-            //Where each value represents the list of objects that is to be written to a range
-            //I simply want to edit a single row, so I use a single list of objects
-//                val values1 = ArrayList<List<Any>>()
-//
-//                val data1 = ArrayList<Any>()
-//                 data1.add("rites")
-//                 data1.add("ritesh")
-//
-//                 values1.add(data1)
-//                val requestBody = ValueRange()
-//                requestBody.majorDimension = "ROWS";
-//                requestBody.range = "A1:B1";
-//                requestBody.setValues(values1);
-//
-//                this.mService!!.spreadsheets().values()
-//                        .update(spreadsheetId, "A1:B1", requestBody)
-//                        .setValueInputOption("RAW")
-//                        .execute()
+                val data1 = ArrayList<Any>()
+                 data1.add(value2)
+                 data1.add(value3)
+                 data1.add(value4)
+                 data1.add(value5)
+
+                var n = position1+8
+                 values1.add(data1)
+                val requestBody = ValueRange()
+                requestBody.majorDimension = "ROWS";
+                requestBody.range = "A"+n+":D";
+                requestBody.setValues(values1);
+
+                this.mService!!.spreadsheets().values()
+                        .update(spreadsheetId, "A"+n+":D", requestBody)
+                        .setValueInputOption("RAW")
+                        .execute()
+
 
                 return results
             }
 
 
         override fun onPreExecute() {
-            Toast.makeText(applicationContext, " ", Toast.LENGTH_SHORT).show()
             mProgress.show()
         }
 
@@ -297,7 +290,10 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
             val j2 = JSONArray()
             val j1 =JSONObject()
             if (output == null || output.isEmpty() ) {
-                toast("No results returned")
+
+                val intent = Intent(this@Editdata, SheetGoogle::class.java)
+                startActivity(intent)
+                finish()
             } else {
 //                output.add(0, "Data retrieved using the Google Sheets API:")
                 var i=0
@@ -308,7 +304,7 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
                     i += 1
                 }
 
-                recyclerView.layoutManager = LinearLayoutManager(this@SheetGoogle)
+                recyclerView.layoutManager = LinearLayoutManager(this@Editdata)
 
                 recyclerView.adapter = RecyleJson(j2)
 
@@ -345,7 +341,5 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
         private val PREF_ACCOUNT_NAME = "ylight528@gmail.com"
         private val SCOPES = arrayOf(SheetsScopes.SPREADSHEETS)
     }
+
 }
-
-
-

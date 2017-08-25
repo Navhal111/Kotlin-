@@ -366,6 +366,16 @@ public class Main2Activity extends Activity
                     results.add(row.get(0) + ", " + row.get(3));
                 }
             }
+//            List<List<Object>> values1 = new ArrayList<>();
+//
+//            List<Object> data1 = new ArrayList<>();      //Where each value represents the list of objects that is to be written to a range
+//            //I simply want to edit a single row, so I use a single list of objects
+//
+//            data1.add("objA");
+//            data1.add("objB");
+//
+//            //There are obviously more dynamic ways to do these, but you get the picture
+//            values1.add(data1);
             return results;
         }
 

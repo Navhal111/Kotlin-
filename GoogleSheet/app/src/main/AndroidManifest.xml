@@ -21,7 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity" />
-        <activity android:name=".SheetGoogle"></activity>
+        <activity android:name=".SheetGoogle" />
+        <activity android:name=".Editdata"></activity>
     </application>
 
 </manifest>
