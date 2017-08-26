@@ -16,10 +16,6 @@ import android.os.Build
 import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
 
-import android.support.v7.widget.RecyclerView
-import android.view.View
-import android.widget.AdapterView
-import android.widget.TextView
 import android.widget.Toast
 
 import com.google.android.gms.common.ConnectionResult
@@ -38,11 +34,7 @@ import org.jetbrains.anko.toast
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import com.google.api.client.json.JsonFactory;
-import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
-import kotlinx.android.synthetic.main.listview.*
 
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
@@ -51,7 +43,7 @@ import kotlin.collections.ArrayList
 class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
     internal lateinit var mCredential: GoogleAccountCredential
     internal lateinit var mProgress: ProgressDialog
-    lateinit var mainarray: List<String>
+    private lateinit var mainarray: List<String>
     var position1: Int = 0
     lateinit var value2: Any
     lateinit var value3: Any
@@ -248,11 +240,11 @@ class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
             @RequiresApi(Build.VERSION_CODES.O) @Throws(IOException::class)
             get() {
                 val spreadsheetId = "1mV_x0JvE-nP3xRMMtBX8NlQoKjp4qs7oq83t1TfkHx4"
-                val range = "A8:D"
+//                val range = "A8:D"
                 val results = ArrayList<String>()
-                val response = this.mService!!.spreadsheets().values()
-                        .get(spreadsheetId, range)
-                        .execute()
+//                val response: ValueRange? = this.mService!!.spreadsheets().values()
+//                        .get(spreadsheetId, range)
+//                        .execute()
 
                 //Where each value represents the list of objects that is to be written to a range
                 //I simply want to edit a single row, so I use a single list of objects
@@ -264,15 +256,15 @@ class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
                  data1.add(value4)
                  data1.add(value5)
 
-                var n = position1+8
+                val n = position1+8
                  values1.add(data1)
                 val requestBody = ValueRange()
-                requestBody.majorDimension = "ROWS";
-                requestBody.range = "A"+n+":D";
-                requestBody.setValues(values1);
+                requestBody.majorDimension = "ROWS"
+                requestBody.range = "A$n:D"
+                requestBody.setValues(values1)
 
                 this.mService!!.spreadsheets().values()
-                        .update(spreadsheetId, "A"+n+":D", requestBody)
+                        .update(spreadsheetId, "A$n:D", requestBody)
                         .setValueInputOption("RAW")
                         .execute()
 

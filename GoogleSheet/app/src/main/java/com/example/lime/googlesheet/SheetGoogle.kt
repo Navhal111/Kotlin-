@@ -15,8 +15,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.AdapterView
-import android.widget.TextView
 import android.widget.Toast
 
 import com.google.android.gms.common.ConnectionResult
@@ -35,11 +33,11 @@ import org.jetbrains.anko.toast
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import com.google.api.client.json.JsonFactory;
-import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
-import com.google.api.services.sheets.v4.model.ValueRange;
-import kotlinx.android.synthetic.main.listview.*
+//import com.google.api.client.json.JsonFactory;
+//import com.google.api.services.sheets.v4.Sheets;
+//import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
+//import com.google.api.services.sheets.v4.model.ValueRange;
+//import kotlinx.android.synthetic.main.listview.*
 
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
@@ -86,7 +84,7 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 //               toast(mainarray.get(position).toString())
                 val intent = Intent(this@SheetGoogle, Editdata::class.java)
 
-                intent.putExtra("Keyvalue",mainarray.get(position).toString())
+                intent.putExtra("Keyvalue", mainarray[position].toString())
                 intent.putExtra("Position",position)
                 startActivity(intent)
 
@@ -258,12 +256,14 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
                 val values = response.getValues()
                 mainarray = response.getValues()
-                if (values != null) {
-                    for (row in values) {
-                        results.add(row[0].toString() + ", " + row[3])
-                    }
-                }
 
+//                if (values != null) {
+//                    for (row in values) {
+//                        results.add(row[0].toString() + ", " + row[3])
+//                    }
+//                }
+
+                values?.mapTo(results) { it[0].toString() + ", " + it[3] }
             //Where each value represents the list of objects that is to be written to a range
             //I simply want to edit a single row, so I use a single list of objects
 //                val values1 = ArrayList<List<Any>>()
@@ -318,19 +318,15 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
 
         override fun onCancelled() {
             mProgress.hide()
-            if (mLastError != null) {
-                if (mLastError is GooglePlayServicesAvailabilityIOException) {
-                    showGooglePlayServicesAvailabilityErrorDialog(
-                            (mLastError as GooglePlayServicesAvailabilityIOException)
-                                    .connectionStatusCode)
-                } else if (mLastError is UserRecoverableAuthIOException) {
-                    startActivityForResult(
-                            (mLastError as UserRecoverableAuthIOException).intent,
-                            SheetGoogle.REQUEST_AUTHORIZATION)
-                } else {
-                    Toast.makeText(applicationContext, "The following error occurred:" + mLastError!!.message, Toast.LENGTH_SHORT).show()
-
-                }
+            if (mLastError != null)
+                when (mLastError) {
+                is GooglePlayServicesAvailabilityIOException -> showGooglePlayServicesAvailabilityErrorDialog(
+                        (mLastError as GooglePlayServicesAvailabilityIOException)
+                                .connectionStatusCode)
+                is UserRecoverableAuthIOException -> startActivityForResult(
+                        (mLastError as UserRecoverableAuthIOException).intent,
+                        SheetGoogle.REQUEST_AUTHORIZATION)
+                else -> Toast.makeText(applicationContext, "The following error occurred:" + mLastError!!.message, Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(applicationContext, "Request cancelled", Toast.LENGTH_SHORT).show()
             }
