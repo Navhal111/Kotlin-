@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity(){
             toast(str.split(":").toString())
 
             val queue = Volley.newRequestQueue(this@MainActivity)
-            val postRequest = StringRequest(Request.Method.GET, "https://freemusicarchive.org/api/trackSearch?q=deerhoof&limit=10", Listener<String>
+            val postRequest = StringRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCx8g6OKTHAyIsmEJr6FPl5w&key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY", Listener<String>
             {
                 response ->
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(){
 // https://www.youtube.com/watch?v=d8ALcQiuPWs
         button1.setOnClickListener {
             val queyj = Volley.newRequestQueue(this@MainActivity)
-            val jsonobj = JsonObjectRequest(Request.Method.POST, "http://192.168.0.3:8080/api/v1/index.php/adminlogin", j, Listener<JSONObject>
+            val jsonobj = JsonObjectRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UCx8g6OKTHAyIsmEJr6FPl5w&key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY",null, Listener<JSONObject>
             {
                 response ->
                 toast(response.toString())

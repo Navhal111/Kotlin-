@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.lime.googlesheet
 
 import android.support.v7.app.AppCompatActivity
@@ -30,18 +32,18 @@ import com.google.api.client.util.ExponentialBackOff
 
 import com.google.api.services.sheets.v4.SheetsScopes
 import kotlinx.android.synthetic.main.activity_sheet_google.*
-import org.jetbrains.anko.toast
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import com.google.api.services.sheets.v4.model.ValueRange;
+import com.google.api.services.sheets.v4.model.ValueRange
 
 import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
-    internal lateinit var mCredential: GoogleAccountCredential
+    private lateinit var mCredential: GoogleAccountCredential
     internal lateinit var mProgress: ProgressDialog
     private lateinit var mainarray: List<String>
     var position1: Int = 0
@@ -307,17 +309,14 @@ class Editdata : AppCompatActivity() , EasyPermissions.PermissionCallbacks {
         override fun onCancelled() {
             mProgress.hide()
             if (mLastError != null) {
-                if (mLastError is GooglePlayServicesAvailabilityIOException) {
-                    showGooglePlayServicesAvailabilityErrorDialog(
+                when (mLastError) {
+                    is GooglePlayServicesAvailabilityIOException -> showGooglePlayServicesAvailabilityErrorDialog(
                             (mLastError as GooglePlayServicesAvailabilityIOException)
                                     .connectionStatusCode)
-                } else if (mLastError is UserRecoverableAuthIOException) {
-                    startActivityForResult(
+                    is UserRecoverableAuthIOException -> startActivityForResult(
                             (mLastError as UserRecoverableAuthIOException).intent,
                             SheetGoogle.REQUEST_AUTHORIZATION)
-                } else {
-                    Toast.makeText(applicationContext, "The following error occurred:" + mLastError!!.message, Toast.LENGTH_SHORT).show()
-
+                    else -> Toast.makeText(applicationContext, "The following error occurred:" + mLastError!!.message, Toast.LENGTH_SHORT).show()
                 }
             } else {
                 Toast.makeText(applicationContext, "Request cancelled", Toast.LENGTH_SHORT).show()

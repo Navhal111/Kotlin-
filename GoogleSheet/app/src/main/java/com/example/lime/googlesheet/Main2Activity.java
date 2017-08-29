@@ -19,6 +19,7 @@ package com.example.lime.googlesheet;
 
         import android.Manifest;
         import android.accounts.AccountManager;
+        import android.annotation.SuppressLint;
         import android.app.Activity;
         import android.app.Dialog;
         import android.app.ProgressDialog;
@@ -66,6 +67,7 @@ public class Main2Activity extends Activity
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
      */
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,9 +126,8 @@ public class Main2Activity extends Activity
      * appropriate.
      */
     private void getResultsFromApi() {
-        if (! isGooglePlayServicesAvailable()) {
-            acquireGooglePlayServices();
-        } else if (mCredential.getSelectedAccountName() == null) {
+        if (! isGooglePlayServicesAvailable()) acquireGooglePlayServices();
+        else if (mCredential.getSelectedAccountName() == null) {
             chooseAccount();
         } else if (! isDeviceOnline()) {
             mOutputText.setText("No network connection available.");
@@ -318,6 +319,7 @@ public class Main2Activity extends Activity
      * An asynchronous task that handles the Google Sheets API call.
      * Placing the API calls in their own task ensures the UI stays responsive.
      */
+    @SuppressLint("StaticFieldLeak")
     private class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         private com.google.api.services.sheets.v4.Sheets mService = null;
         private Exception mLastError = null;

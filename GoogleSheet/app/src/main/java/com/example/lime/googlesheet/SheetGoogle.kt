@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.lime.googlesheet
 
 import android.accounts.AccountManager
@@ -43,9 +45,10 @@ import pub.devrel.easypermissions.EasyPermissions
 import java.util.*
 import kotlin.collections.ArrayList
 
+@Suppress("DEPRECATION")
 class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
-    internal lateinit var mCredential: GoogleAccountCredential
-    internal lateinit var mProgress: ProgressDialog
+    private lateinit var mCredential: GoogleAccountCredential
+    private lateinit var mProgress: ProgressDialog
     lateinit var mainarray :List<Any>
     interface OnItemClickListener {
         fun onItemClicked(position: Int, view: View)
@@ -87,6 +90,7 @@ class SheetGoogle : AppCompatActivity(), EasyPermissions.PermissionCallbacks {
                 intent.putExtra("Keyvalue", mainarray[position].toString())
                 intent.putExtra("Position",position)
                 startActivity(intent)
+                finish()
 
             }
         })
