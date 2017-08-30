@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="50dp"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+ <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:orientation="vertical">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/you"
+            android:layout_gravity="center_horizontal"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF000000"/>
+     <android.support.v7.widget.CardView
+         android:id="@+id/card_view1"
+         xmlns:card_view="http://schemas.android.com/apk/res-auto"
+         android:layout_width="match_parent"
+         android:layout_height="150dp"
+         card_view:cardCornerRadius="10dp"
+         card_view:cardElevation="5dp"
+         card_view:cardUseCompatPadding="true">
+
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             >
+
+             <ImageView
+                 android:id="@+id/imageView1"
+                 android:tag="image_tag"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="5dp"
+                 android:layout_weight="1"
+                 android:src="@drawable/mainsub"/>
+
+             <LinearLayout
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="12dp"
+                 android:layout_weight="2"
+                 android:orientation="vertical"
+                 >
+
+                 <TextView
+                     android:id="@+id/textViewName1"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_marginTop="10dp"
+                     android:text="Subscriber"
+                     android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                 <TextView
+                     android:id="@+id/subcount"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center_horizontal"
+                     android:layout_marginTop="10dp"
+                     android:text="0"
+                     android:textSize="20dp"
+                     android:textAlignment="center"
+                     android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+             </LinearLayout>
+         </LinearLayout>
+
+     </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            card_view:cardCornerRadius="10dp"
+            card_view:cardElevation="5dp"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:tag="image_tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/view"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/textViewName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="Views"
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                    <TextView
+                        android:id="@+id/viewcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:text="0"
+                        android:textSize="20dp"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view2"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        card_view:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        card_view:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:tag="image_tag"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:src="@drawable/video"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/textViewName2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="Videos"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+                <TextView
+                    android:id="@+id/videocount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+ </LinearLayout>
+
+</ScrollView>
+</LinearLayout>
