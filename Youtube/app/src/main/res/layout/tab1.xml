@@ -6,11 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_dark_background">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/header1"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingTop="10dp"
+            android:background="#727375"
+            android:textColor="#dbe8dd"
+            android:text="Business"
+            android:layout_gravity="left"
+            android:textSize="25dp" />
 
+        <ImageButton
+            android:id="@+id/ref1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/header1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@android:drawable/ic_menu_rotate" />
+
+    </RelativeLayout>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="50dp"
     android:orientation="vertical"
     tools:ignore="UselessParent">
 
@@ -26,6 +48,7 @@
             android:src="@drawable/you"
             android:layout_gravity="center_horizontal"
             app:civ_border_width="0dp"
+            android:layout_marginTop="6dp"
             app:civ_border_color="#FF000000"/>
      <android.support.v7.widget.CardView
          android:id="@+id/card_view1"
@@ -139,6 +162,14 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+
+     <ProgressBar
+         android:id="@+id/progressBar1"
+         style="?android:attr/progressBarStyleLarge"
+         android:layout_width="wrap_content"
+         android:layout_height="6dp"
+         android:visibility="gone"
+         android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view2"
