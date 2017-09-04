@@ -2,6 +2,7 @@ package com.example.lime.youtube
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 
 import android.support.v4.app.Fragment
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.tab1.*
 import kotlinx.android.synthetic.main.tab1.view.*
 import kotlinx.android.synthetic.main.tab2.*
+import kotlinx.android.synthetic.main.tab2.view.*
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -233,6 +235,7 @@ class MainActivity : AppCompatActivity() {
                   queyj.add(jsonobj)
 
               }
+
 //            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
             return rootView
         }
@@ -295,7 +298,12 @@ class MainActivity : AppCompatActivity() {
 
             queyj2.add(jsonobj2)
 
+            rootView.ref2.setOnClickListener{
 
+                val intent = Intent(context, JsonList::class.java)
+//                    intent.putExtra("name", "Ritesh")
+                startActivity(intent)
+            }
 //            rootView.section_label.text = getString(R.string.section_format, arguments.getInt(ARG_SECTION_NUMBER))
             return rootView
         }
