@@ -12,9 +12,10 @@ import kotlinx.android.synthetic.main.tab2.*
 import org.jetbrains.anko.toast
 import org.json.JSONArray
 import org.json.JSONObject
+import java.net.URL
 
 class JsonList : AppCompatActivity() {
-
+    var stringid:String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_json_list)
@@ -25,37 +26,54 @@ class JsonList : AppCompatActivity() {
                 Response.Listener<JSONObject>
                 {
                     response ->
-                    //                    toast(response.toString())
                     val setert: JSONArray = response.get("items") as JSONArray
-                    val j2 = JSONArray()
                     val jsona = JSONArray()
                     var j1 = JSONObject()
                     var j3 = JSONObject()
-                    var j4 = JSONObject()
+
+
 //                        toast(setert.get(0).toString())
                     var i=0
                     while(i<setert.length()-1){
                         j1= setert.get(i) as JSONObject
                         j3=j1.get("snippet") as JSONObject
-                        j2.put(i,j3.get("title"))
+                        var j4 = JSONObject()
                         j4=j1.get("id") as JSONObject
-                        jsona.put(i,j4.get("videoId"))
+                        val j5= JSONObject()
+                        j5.put("id",j4.get("videoId"))
+                        j5.put("title",j3.get("title"))
+                        stringid +=','+j4.get("videoId").toString()
+                        jsona.put(i,j5)
                         i++
                     }
-                    var j=0
-                    var MainJson = JSONObject()
-                    MainJson.put("title",j2)
-                    MainJson.put("id",jsona)
-                    json1.text=MainJson.toString()
+                    val queyj1 = Volley.newRequestQueue(this@JsonList)
+                    val jsonobj1 = JsonObjectRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/videos?part=statistics&id="+stringid+"&key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY",null,
 
+                            Response.Listener<JSONObject>
+                            {
+                                response ->
+                                val setert1: JSONArray = response.get("items") as JSONArray
+                                json1.text=setert1.toString()
+
+
+                            }, Response.ErrorListener {
+
+                        toast("somthing went wrong")
+//
+                    })
+
+                    queyj1.add(jsonobj1)
+//                    json1.text=jsona.toString()
 
                 }, Response.ErrorListener {
 
             toast("somthing went wrong")
-
+//
         })
 
         queyj2.add(jsonobj2)
 
+
     }
+
 }
