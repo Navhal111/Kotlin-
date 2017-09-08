@@ -1,7 +1,9 @@
 package com.example.lime.youtube
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -16,9 +18,12 @@ import java.net.URL
 
 class JsonList : AppCompatActivity() {
     var stringid:String? = null
+    lateinit var mainJson:JSONArray
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_json_list)
+       var s=0
 
         val queyj2 = Volley.newRequestQueue(this@JsonList)
         val jsonobj2 = JsonObjectRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/search?key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY&channelId=UCx8g6OKTHAyIsmEJr6FPl5w&part=snippet,id&order=date&maxResults=20",null,
@@ -40,29 +45,50 @@ class JsonList : AppCompatActivity() {
                         var j4 = JSONObject()
                         j4=j1.get("id") as JSONObject
                         val j5= JSONObject()
+                        var thj1 = j3.getJSONObject("thumbnails")
+                        var thj2 = thj1.getJSONObject("default")
+                        var mainthum = thj2.getString("url")
                         j5.put("id",j4.get("videoId"))
                         j5.put("title",j3.get("title"))
-                        stringid +=','+j4.get("videoId").toString()
+                        j5.put("thum",mainthum)
+                        stringid =j4.get("videoId").toString()
+                        val queyj1 = Volley.newRequestQueue(this@JsonList)
+                        val jsonobj1 = JsonObjectRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/videos?part=statistics&id="+stringid+"&key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY",null,
+
+                                Response.Listener<JSONObject>
+                                {
+                                    response ->
+                                    val setert1: JSONArray = response.get("items") as JSONArray
+                                    var j=0
+                                    while(j<setert1.length()){
+                                        j1= setert1.get(j) as JSONObject
+                                        j3=j1.get("statistics") as JSONObject
+                                        j5.put("view",j3.get("viewCount"))
+                                        j5.put("like",j3.get("likeCount"))
+                                        j5.put("dislike",j3.get("dislikeCount"))
+                                        j5.put("comment",j3.get("commentCount"))
+
+                                        j++
+                                        s++
+                                    }
+//                                    json1.text=jsona.toString()
+                                    mainJson= jsona
+                                    if(s==setert.length()-1){
+                                        json1.text=mainJson.toString()
+                                    }
+
+                                }, Response.ErrorListener {
+
+                            toast("somthing went wrong")
+//
+                        })
+
+                        queyj1.add(jsonobj1)
+
                         jsona.put(i,j5)
                         i++
                     }
-                    val queyj1 = Volley.newRequestQueue(this@JsonList)
-                    val jsonobj1 = JsonObjectRequest(Request.Method.GET, "https://www.googleapis.com/youtube/v3/videos?part=statistics&id="+stringid+"&key=AIzaSyA6n4XwynMfe8n7bzZZsQjxquEU4o7MELY",null,
 
-                            Response.Listener<JSONObject>
-                            {
-                                response ->
-                                val setert1: JSONArray = response.get("items") as JSONArray
-                                json1.text=setert1.toString()
-
-
-                            }, Response.ErrorListener {
-
-                        toast("somthing went wrong")
-//
-                    })
-
-                    queyj1.add(jsonobj1)
 //                    json1.text=jsona.toString()
 
                 }, Response.ErrorListener {
@@ -72,7 +98,6 @@ class JsonList : AppCompatActivity() {
         })
 
         queyj2.add(jsonobj2)
-
 
     }
 
