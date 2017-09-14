@@ -132,7 +132,9 @@ class MainActivity : AppCompatActivity() {
     fun download(view: MainActivity) {
         progress = ProgressDialog(this)
         progress!!.setMessage("Get Your data")
-        progress!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+//        progress!!.setProgressStyle()
+        val res = resources
+        progress!!.setProgressDrawable(res.getDrawable(R.drawable.greenprogress));
         progress!!.isIndeterminate = true
         progress!!.progress = 0
         progress!!.show()
