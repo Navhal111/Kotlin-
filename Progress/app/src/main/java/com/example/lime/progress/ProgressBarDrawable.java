@@ -78,14 +78,10 @@ public class ProgressBarDrawable extends Drawable {
 
         for (RectF separator : this.separators)
         {
-             if(i<=2){
-                 this.paint.setColor(this.separatorColor);
-                 canvas.drawRect(separator, this.paint);
-             }else{
+
                  this.paint.setColor(this.separatorColor1);
                  canvas.drawRect(separator, this.paint);
-             }
-        i++;
+
         }
     }
 
