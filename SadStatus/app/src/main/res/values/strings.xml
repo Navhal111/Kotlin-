@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SadStatus</string>
+    <string name="interstial_ads">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="banner_ads">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <!--<string name="interstial_ads">ca-app-pub-9611503142284796/3991668484</string>-->
+    <!--<string name="banner_ads">ca-app-pub-9611503142284796/7752973619</string>-->
+</resources>

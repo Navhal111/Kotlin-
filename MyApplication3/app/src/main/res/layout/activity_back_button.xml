@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.pistalix.startup.motivational.quotes.BackButton"
+    android:background="#EADEC9"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Want To More App?"
+        android:textColor="#8E3E38"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="4dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp">
+
+        <Button
+            android:id="@+id/rate_app_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            android:layout_marginLeft="4dp"
+            android:text="Rate Us" />
+
+        <Button
+            android:text="NO"
+            android:id="@+id/no_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/no_round"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/yes_button"
+            android:layout_toStartOf="@+id/yes_button" />
+
+        <Button
+            android:text="YES"
+            android:id="@+id/yes_button"
+            android:background="@drawable/yes_round"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginRight="17dp"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

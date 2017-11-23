@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--<ImageView-->
+                <!--android:id="@+id/status_image"-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="150dp"-->
+                <!--android:layout_gravity="center" />-->
+            <ImageView
+                android:id="@+id/status_image"
+                android:adjustViewBounds="true"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_margin="2dp"
+                android:layout_width="match_parent"/>
+<LinearLayout
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:layout_alignBottom="@+id/status_image"
+    android:background="@drawable/select_linear">
+
+            <ImageView
+                android:id="@+id/status_tick"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:visibility="invisible"
+                android:background="@drawable/roundsucc"
+                android:src="@drawable/ic_check_1"
+                android:animateLayoutChanges="true"
+                android:layout_weight="5"/>
+</LinearLayout>
+        </RelativeLayout>
+</LinearLayout>

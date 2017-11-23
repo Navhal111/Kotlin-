@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/whatsappvideos_bg"
+    tools:context="pistalix.sadvideostatus.sadvideosong.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp">
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+        <com.ss.bottomnavigation.BottomNavigation
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="#333334">
+            <com.ss.bottomnavigation.TabItem
+                android:id="@+id/tab_home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:tab_text="Home"
+                app:tab_icon="@drawable/home"
+                />
+            <com.ss.bottomnavigation.TabItem
+                android:id="@+id/tab_images"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:tab_text="Trending"
+                app:tab_icon="@drawable/trending"
+                />
+            <com.ss.bottomnavigation.TabItem
+                android:id="@+id/tab_camera"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:tab_text="Whatsapp"
+                app:tab_icon="@drawable/whatsapp"
+                />
+            <com.ss.bottomnavigation.TabItem
+                android:id="@+id/tab_products"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:tab_text="Downloads"
+                app:tab_icon="@drawable/download"
+                />
+        </com.ss.bottomnavigation.BottomNavigation>
+        <!--<com.roughike.bottombar.BottomBar-->
+        <!--android:id="@+id/bottomBar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--android:gravity="bottom"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--app:bb_tabXmlResource="@xml/navigation_bar_menu" />-->
+    </RelativeLayout>
+
+
+</LinearLayout>

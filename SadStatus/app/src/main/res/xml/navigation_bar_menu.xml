@@ -1,0 +1,23 @@
+<tabs>
+    <tab
+        id="@+id/tab_calls"
+        icon="@drawable/ic_home_black_24dp"
+        title="Home"
+        activeColor="#f62d0e"
+        />
+    <tab
+        id="@+id/tab_groups"
+        icon="@drawable/ic_home_black_24dp"
+        title="BaalGeet"
+        activeColor="#e6422c" />
+    <tab
+        id="@+id/tab_chats"
+        icon="@drawable/ic_home_black_24dp"
+        title="BaalVideos"
+        activeColor="#e6422c"/>
+    <tab
+        id="@+id/tab_down"
+        icon="@drawable/ic_home_black_24dp"
+        title="Downloaded"
+        activeColor="#e6422c"/>
+</tabs>

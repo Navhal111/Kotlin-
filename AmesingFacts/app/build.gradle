@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "pistalix.amazingfacts"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 2
+        versionName "2.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile "org.jetbrains.anko:anko-common:0.8.3"
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+}

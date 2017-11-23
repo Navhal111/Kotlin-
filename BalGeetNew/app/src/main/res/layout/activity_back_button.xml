@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="pistalix.gujaratibalgeetvideo.gujaratirhymes.BackButton"
+    android:background="@drawable/popup"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Want More App?"
+        android:textColor="#000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:fontFamily="cursive"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="4dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp">
+
+        <Button
+            android:id="@+id/rate_app_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yes_round"
+            android:layout_marginLeft="4dp"
+            android:textColor="#fff"
+            android:text="Rate Us" />
+
+        <Button
+            android:text="NO"
+            android:id="@+id/no_button"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/yes_round"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toLeftOf="@+id/yes_button"
+            android:layout_toStartOf="@+id/yes_button" />
+
+        <Button
+            android:text="YES"
+            android:id="@+id/yes_button"
+            android:background="@drawable/yes_round"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textColor="#fff"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginRight="17dp"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen"
+    tools:context="pistalix.hindi.shayari.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju_chu"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon1" />
+
+                    <ImageView
+                        android:id="@+id/gujju_quotes"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/thegujjugyan"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon3" />
+
+                    <ImageView
+                        android:id="@+id/gujju_amdavadi"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon4" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujaraticomedy"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon5" />
+
+                    <ImageView
+                        android:id="@+id/gujaratibablo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon6" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju_comedy"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon7" />
+
+                    <ImageView
+                        android:id="@+id/thegujjurocks"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon8" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujarati_tweets"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon9" />
+
+                    <ImageView
+                        android:id="@+id/gujju_bhasha"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon10" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujarati_shayar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon11" />
+
+                    <ImageView
+                        android:id="@+id/gujju_thegreat"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon12" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju_facts"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon13" />
+
+                    <ImageView
+                        android:id="@+id/gujju_minion"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon14" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju_prem"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon15" />
+
+                    <ImageView
+                        android:id="@+id/gujarati_fatakdo"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon16" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujjubox"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon17" />
+
+                    <ImageView
+                        android:id="@+id/gujjutroller"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon18" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju_mathabhare"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon19" />
+
+                    <ImageView
+                        android:id="@+id/gujju_no_love"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon20" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/gujju__quotes__2017"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon21" />
+
+                    <ImageView
+                        android:id="@+id/gujju_ni_aashiqui"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="15dp"
+                        android:src="@drawable/icon22" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/share_app"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/mainscrren_yoga_rate" />
+
+
+                    <ImageView
+                        android:id="@+id/rate_app"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_margin="20dp"
+                        android:src="@drawable/mainscrren_yoga_share" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/post_image"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    card_view:cardBackgroundColor="#90AD9976"
+                    card_view:cardCornerRadius="0dp"
+                    card_view:cardElevation="5dp"
+                    card_view:cardUseCompatPadding="true"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="25dp"
+                            android:textColor="#8E3E38"
+                            android:text="More Apps"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#000" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/fitness"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/fitness" />
+                        <ImageView
+                            android:id="@+id/quotesbook"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/quotes"/>
+
+                        <ImageView
+                            android:id="@+id/yoga_app"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_margin="20dp"
+                            android:src="@drawable/yoga" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-9611503142284796/2092519641" />
+    </RelativeLayout>
+</LinearLayout>
