@@ -24,10 +24,9 @@ import com.Pistalix.App.QuoteBook.R.id.recyclerView
 import com.Pistalix.App.QuoteBook.R.id.recyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 
 //import com.example.lime.instagram_post.R.id.
-
-
 
 
 class PostDisplay : AppCompatActivity() {
@@ -39,9 +38,16 @@ class PostDisplay : AppCompatActivity() {
     var max_id: String? = null
     var hasMore = true
     private var mAdView: AdView? = null
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_display)
+        var adRequest1: AdRequest
+        mInterstitialAd = InterstitialAd(this)
+        adRequest1 = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest1)
         val text = intent.getStringExtra("keyName")
 
         var check = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED)
@@ -51,6 +57,8 @@ class PostDisplay : AppCompatActivity() {
                     arrayOf(Manifest.permission.ACCESS_NETWORK_STATE),
                     REQUEST_WRITE_EXTERNAL_STORAGE)
         }
+
+
         mAdView = findViewById<View>(R.id.adView) as AdView
         val adRequest = AdRequest.Builder()
                 .build()
@@ -84,7 +92,7 @@ class PostDisplay : AppCompatActivity() {
                         i+=1
                     }
                     jasonArray_post=main_json_array
-                    recyclerView.adapter = Recycle_Post(jasonArray_post)
+                    recyclerView.adapter = Recycle_Post(jasonArray_post,mInterstitialAd)
                     if(array_Json.length()!=0){
                         last_int=array_Json.length()
                         linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager

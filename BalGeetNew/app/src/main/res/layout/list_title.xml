@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:layout_margin="10dp"
         android:clickable="true"
-        android:background="@drawable/rippel"
         >
         <TextView
             android:id="@+id/titletext"
@@ -33,6 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-9611503142284796/8181668278" />
+            ads:adUnitId="@string/banner_ads" />
     </LinearLayout>
 </LinearLayout>

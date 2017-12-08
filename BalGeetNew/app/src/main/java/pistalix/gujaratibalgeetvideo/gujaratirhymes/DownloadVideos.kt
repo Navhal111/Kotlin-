@@ -18,7 +18,6 @@ class DownloadVideos : Fragment(){
     private var progress: ProgressDialog? = null
     private val REQUEST_WRITE_EXTERNAL_STORAGE = 1
     lateinit var rootView : View
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.activity_download_videos, container, false)

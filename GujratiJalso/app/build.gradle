@@ -11,8 +11,8 @@ android {
         applicationId "com.pistalix.gujrati.jalso"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 9
-        versionName "9.0"
+        versionCode 10
+        versionName "10.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -39,4 +39,5 @@ dependencies {
     compile 'com.facebook.android:audience-network-sdk:4.+'
     compile 'com.google.ads.mediation:facebook:4.26.1.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+    compile 'com.orhanobut:dialogplus:1.11@aar'
 }

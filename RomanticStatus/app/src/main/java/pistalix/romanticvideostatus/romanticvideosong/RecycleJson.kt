@@ -16,15 +16,19 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 
-
-//https://i.ytimg.com/vi/I4wkxIUQi1g/default.jpg
-class RecyleJson (var name: JSONArray,var playlistId:String): RecyclerView.Adapter<RecyleJson.ViewHolder>()
+class RecyleJson (var name: JSONArray,var playlistId:String,var ads :InterstitialAd): RecyclerView.Adapter<RecyleJson.ViewHolder>()
 {
     lateinit var context1:Context
     val adRequest = AdRequest.Builder().build()
-    var mInterstitialAd: InterstitialAd? = null
+
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         val json1:JSONObject = name.getJSONObject(position)
+        ads.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
+            }
+        }
         if(position%3==0 && position !=0){
             holder.mAdView.visibility = View.VISIBLE
             holder.mAdView.loadAd(adRequest)
@@ -32,12 +36,14 @@ class RecyleJson (var name: JSONArray,var playlistId:String): RecyclerView.Adapt
             val videoid =json1.getString("id")
             val imageurl=json1.getString("imageurl")
             holder.video.setOnClickListener {
-                val intent = Intent(context1, VideoView::class.java)
+                val intent = Intent(context1, MainVideoView::class.java)
                 intent.putExtra("videoid", videoid)
                 intent.putExtra("playlistId", playlistId)
                 intent.putExtra("Title",json1.getString("title"))
-                see_ad()
                 context1.startActivity(intent)
+                ads.show()
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
             }
 
             Picasso.with(context1).load(imageurl).fit().into(holder.thummail)
@@ -49,12 +55,14 @@ class RecyleJson (var name: JSONArray,var playlistId:String): RecyclerView.Adapt
             val imageurl=json1.getString("imageurl")
             holder.video.setOnClickListener {
 
-                val intent = Intent(context1, VideoView::class.java)
+                val intent = Intent(context1, MainVideoView::class.java)
                 intent.putExtra("videoid", videoid)
                 intent.putExtra("playlistId", playlistId)
                 intent.putExtra("Title",json1.getString("title"))
-                see_ad()
                 context1.startActivity(intent)
+                ads.show()
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
             }
 
             Picasso.with(context1).load(imageurl).fit().into(holder.thummail)
@@ -86,29 +94,6 @@ class RecyleJson (var name: JSONArray,var playlistId:String): RecyclerView.Adapt
         }
     }
 
-    private fun showInterstitial() {
-        if (mInterstitialAd!!.isLoaded()) {
-            mInterstitialAd!!.show()
-        }
-    }
-    fun see_ad(){
 
-        val ads = context1.getResources().getString(R.string.interstial_ads)
-        mInterstitialAd = InterstitialAd(context1)
-
-        // set the ad unit ID
-        mInterstitialAd!!.adUnitId = ads
-
-        val adRequest1 = AdRequest.Builder()
-                .build()
-
-        mInterstitialAd!!.loadAd(adRequest1)
-
-        mInterstitialAd!!.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                showInterstitial()
-            }
-        }
-    }
 }
 

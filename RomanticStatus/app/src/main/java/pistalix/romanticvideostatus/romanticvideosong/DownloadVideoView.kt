@@ -95,7 +95,7 @@ class DownloadVideoView : AppCompatActivity() {
     }
 
     fun share_video(filepath:String,packeg:String) {
-        var string_path = Uri.fromFile(File(filepath))
+        var string_path = Uri.parse(filepath)
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "video/*"
         sharingIntent.`package` = packeg

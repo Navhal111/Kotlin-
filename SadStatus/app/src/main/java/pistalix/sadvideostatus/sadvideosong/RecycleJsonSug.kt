@@ -20,11 +20,7 @@ import org.json.JSONObject
 class RecycleJsonSug (var name: JSONArray,var playlistId:String,var ads :InterstitialAd): RecyclerView.Adapter<RecycleJsonSug.ViewHolder>()
 {
     lateinit var context1:Context
-    private val ITAG_FOR_AUDIO = 140
-    private var videosFound: ListView? = null
-    internal var mainLayout: LinearLayout? = null
 
-    var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         var json1:JSONObject
         json1 = name.getJSONObject(position)

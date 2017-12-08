@@ -32,7 +32,7 @@ import java.io.FileOutputStream
 import java.io.IOException
 
 
-class Recycle_Post (var name: JSONArray,var PageName:String): RecyclerView.Adapter<Recycle_Post.ViewHolder>() {
+class Recycle_Post (var name: JSONArray,var PageName:String,var ads :InterstitialAd): RecyclerView.Adapter<Recycle_Post.ViewHolder>() {
     lateinit var context1: Context
     var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -40,7 +40,12 @@ class Recycle_Post (var name: JSONArray,var PageName:String): RecyclerView.Adapt
         var json_post: JSONObject
 
         json_post = name.getJSONObject(position)
-
+        ads.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
+            }
+        }
 //        if(json_post.get("__typename")=="GraphImage"){
 
         var url = json_post.getString("display_src")
@@ -64,45 +69,18 @@ class Recycle_Post (var name: JSONArray,var PageName:String): RecyclerView.Adapt
             intent.putExtra(Intent.EXTRA_TEXT, "Now Staying All Time Motivated is Free With Motivational Quotes, Download Now!\n" +
                     "link  https://goo.gl/Sz7V8a");
             intent.putExtra(Intent.EXTRA_STREAM, uri)
-
-            mInterstitialAd = InterstitialAd(context1)
-
-            // set the ad unit ID
-            mInterstitialAd!!.setAdUnitId("ca-app-pub-9611503142284796/6681403869")
-
-            val adRequest1 = AdRequest.Builder()
-                    .build()
-
-            // Load ads into Interstitial Ads
-            mInterstitialAd!!.loadAd(adRequest1)
-
-            mInterstitialAd!!.adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    showInterstitial()
-                }
-            }
             context1.startActivity(Intent.createChooser(intent, "Share via"))
+                    ads.show()
+                    val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                    ads.loadAd(adRequest)
 
         }
 
 //        holder.button_down.
         holder.button_down.setOnClickListener {
-
-            mInterstitialAd = InterstitialAd(context1)
-
-            // set the ad unit ID
-            mInterstitialAd!!.setAdUnitId("ca-app-pub-9611503142284796/6681403869")
-
-            val adRequest1 = AdRequest.Builder()
-                    .build()
-
-            mInterstitialAd!!.loadAd(adRequest1)
-
-            mInterstitialAd!!.adListener = object : AdListener() {
-                override fun onAdLoaded() {
-                    showInterstitial()
-                }
-            }
+            ads.show()
+            val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+            ads.loadAd(adRequest)
             getLocalBitmapUri1(holder.post_image_set)
             Toast.makeText(context1, "image Downloaded in SD-Card/MotivationalQuotes", Toast.LENGTH_SHORT).show();
         }
@@ -172,11 +150,6 @@ class Recycle_Post (var name: JSONArray,var PageName:String): RecyclerView.Adapt
         return bmpUri
     }
 
-    private fun showInterstitial() {
-        if (mInterstitialAd!!.isLoaded()) {
-            mInterstitialAd!!.show()
-        }
-    }
 
     fun getLocalBitmapUri1(imageView: ImageView): Uri? {
         // Extract Bitmap from ImageView drawable

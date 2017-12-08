@@ -5,24 +5,20 @@ import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
-
 import com.google.android.gms.ads.InterstitialAd
 import org.jetbrains.anko.find
 import java.io.File
 import java.util.ArrayList
 import android.view.ViewGroup
 import android.content.Intent
-import android.graphics.Color
-import com.bumptech.glide.Glide
 import com.github.johnpersano.supertoasts.library.Style
 import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import android.provider.MediaStore
-import android.R.attr.path
 import android.media.ThumbnailUtils
-
+import com.bumptech.glide.Glide
 
 
 class RecycleDownloade (var name: ArrayList<File>): RecyclerView.Adapter<RecycleDownloade.ViewHolder>()
@@ -31,11 +27,11 @@ class RecycleDownloade (var name: ArrayList<File>): RecyclerView.Adapter<Recycle
     var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         holder.title.text  = name[position].name.toString()
-        val thumb = ThumbnailUtils.createVideoThumbnail(name[position].toString(),
-                MediaStore.Images.Thumbnails.MINI_KIND)
-
-        holder.video.setImageBitmap(thumb)
-//         Glide.with(context1).load(name[position].toString()).centerCrop().into(holder.video)
+//        val thumb = ThumbnailUtils.createVideoThumbnail(name[position].toString(),
+//                MediaStore.Images.Thumbnails.MINI_KIND)
+//
+//        holder.video.setImageBitmap(thumb)
+         Glide.with(context1).load(name[position].toString()).into(holder.video)
 
         holder.share.setOnClickListener{
 
@@ -106,8 +102,4 @@ class RecycleDownloade (var name: ArrayList<File>): RecyclerView.Adapter<Recycle
         }
     }
 
-    fun ToastInstallApp(str :String){
-
-        SuperActivityToast.create(context1).setText(str).setDuration(Style.DURATION_LONG).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
-    }
 }

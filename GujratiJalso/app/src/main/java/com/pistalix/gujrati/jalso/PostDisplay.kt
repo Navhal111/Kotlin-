@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_post_display.*
 import org.jetbrains.anko.toast
 import org.json.JSONArray
@@ -39,11 +40,17 @@ class PostDisplay : AppCompatActivity() {
     var hasMore = true
     private val REQUEST_WRITE_EXTERNAL_STORAGE = 1
     private var mAdView: AdView? = null
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_display)
         val text = intent.getStringExtra("keyName")
-
+        var adRequest: AdRequest
+        mInterstitialAd = InterstitialAd(this)
+        adRequest = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest)
         var check = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED)
         if (!check) {
 
@@ -59,9 +66,7 @@ class PostDisplay : AppCompatActivity() {
 
 
         }else{
-            val intent = Intent(this@PostDisplay, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            toast("Check your connection")
         }
 
 //        mAdView = findViewById<View>(R.id.adView) as AdView
@@ -96,7 +101,7 @@ class PostDisplay : AppCompatActivity() {
                         i+=1
                     }
                     jasonArray_post=main_json_array
-                    recyclerView.adapter = Recycle_Post(jasonArray_post,text)
+                    recyclerView.adapter = Recycle_Post(jasonArray_post,text,mInterstitialAd)
                     if(array_Json.length()!=0){
                         last_int=array_Json.length()
                         linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager

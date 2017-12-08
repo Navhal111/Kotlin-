@@ -10,7 +10,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.github.johnpersano.supertoasts.library.Style
 import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.status_whatsapp.view.*
 import org.jetbrains.anko.toast
@@ -21,10 +23,16 @@ import java.util.ArrayList
 
 class FregmentStatus : Fragment() {
     lateinit var rootView :View
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.status_whatsapp, container, false)
-
+        var adRequest: AdRequest
+        mInterstitialAd = InterstitialAd(rootView.context)
+        adRequest = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest)
         var list = DounloadVideosName()
         var MainFiles = ArrayList<File>()
         var i=list.size-1
@@ -41,7 +49,7 @@ class FregmentStatus : Fragment() {
 
         if(MainFiles !=null){
             rootView.recyclerView.layoutManager = LinearLayoutManager(rootView.context)
-            rootView.recyclerView.adapter = StatusVideos(MainFiles)
+            rootView.recyclerView.adapter = StatusVideos(MainFiles,mInterstitialAd)
         }else{
 
             ToastInstallApp("Not yet Seen any story ")
@@ -66,8 +74,8 @@ class FregmentStatus : Fragment() {
         }
         return inFiles
     }
-    fun ToastInstallApp(str :String){
+        fun ToastInstallApp(str :String){
 
-        SuperActivityToast.create(rootView.context).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
-    }
+            SuperActivityToast.create(rootView.context).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
+        }
 }

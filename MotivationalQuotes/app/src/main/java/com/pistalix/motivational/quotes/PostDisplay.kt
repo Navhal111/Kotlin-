@@ -22,6 +22,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 
 //import com.example.lime.instagram_post.R.id.
 
@@ -37,11 +38,17 @@ class PostDisplay : AppCompatActivity() {
     var max_id: String? = null
     var hasMore = true
     private var mAdView: AdView? = null
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_display)
         val text = intent.getStringExtra("keyName")
-
+        var adRequest1: AdRequest
+        mInterstitialAd = InterstitialAd(this)
+        adRequest1 = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest1)
         var check = (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED)
         if (!check) {
 
@@ -82,7 +89,7 @@ class PostDisplay : AppCompatActivity() {
                         i+=1
                     }
                     jasonArray_post=main_json_array
-                    recyclerView.adapter = Recycle_Post(jasonArray_post,text)
+                    recyclerView.adapter = Recycle_Post(jasonArray_post,text,mInterstitialAd)
                     if(array_Json.length()!=0){
                         last_int=array_Json.length()
                         linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager

@@ -22,12 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".GeetText" />
-        <activity android:name=".VideoView" />
+        <!--<activity android:name=".VideoView" />-->
         <activity
             android:name=".BackButton"
             android:theme="@style/AppTheme.Custome" />
         <activity android:name=".DownloadVideoView" />
-        <activity android:name=".MainFregment"></activity>
+        <activity android:name=".MainFregment" />
+        <activity android:name=".MainVideoView"></activity>
     </application>
 
 </manifest>

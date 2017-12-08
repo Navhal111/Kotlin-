@@ -22,7 +22,7 @@ import org.apache.commons.io.FileUtils
 import java.io.IOException
 
 
-class StatusVideos (var name: ArrayList<File>): RecyclerView.Adapter<StatusVideos.ViewHolder>()
+class StatusVideos (var name: ArrayList<File>,var ads :InterstitialAd): RecyclerView.Adapter<StatusVideos.ViewHolder>()
 {
     lateinit var context1:Context
     val externalDirectory = Environment.getExternalStorageDirectory().toString()
@@ -30,6 +30,12 @@ class StatusVideos (var name: ArrayList<File>): RecyclerView.Adapter<StatusVideo
     var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         Glide.with(context1).load(name[position].toString()).into(holder.video)
+        ads.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
+            }
+        }
 
 //        val thumb = ThumbnailUtils.createVideoThumbnail(name[position].toString(), MediaStore.Video.Thumbnails.MINI_KIND);
 //
@@ -39,8 +45,10 @@ class StatusVideos (var name: ArrayList<File>): RecyclerView.Adapter<StatusVideo
             val intent = Intent(context1, WhatsappView::class.java)
             intent.putExtra("videoid", name[position].toString())
             intent.putExtra("Name",name[position].name)
-            see_ad()
             context1.startActivity(intent)
+            ads.show()
+            val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+            ads.loadAd(adRequest)
 
         }
         val folder = File(externalDirectory+"/"+externalDirectory+ "/RomanticStatus/"+name[position].name)

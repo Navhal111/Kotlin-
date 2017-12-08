@@ -24,9 +24,6 @@
         <activity android:name=".PostDisplay" />
         <activity android:name=".PostDisplayTag" />
         <activity android:name=".MainActivity" />
-        <activity
-            android:name=".BackButton"
-            android:theme="@style/AppTheme.Custome" />
     </application>
 
 </manifest>

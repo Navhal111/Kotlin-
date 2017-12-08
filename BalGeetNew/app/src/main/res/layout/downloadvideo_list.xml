@@ -55,7 +55,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="27dp"
                         android:layout_marginRight="27dp"
-                        android:background="@drawable/rippel"
                         android:src="@drawable/baalgeet_share_local"  />
                 </RelativeLayout>
 

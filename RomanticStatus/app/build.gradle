@@ -10,9 +10,8 @@ android {
         applicationId "pistalix.romanticvideostatus.romanticvideosong"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 5
-        versionName "5.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 7
+        versionName "7.0"
     }
     configurations.all {
         resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
@@ -49,4 +48,6 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'com.github.johnpersano:supertoasts:2.0'
     compile 'com.ss.bottomnavigation:bottomnavigation:1.5.2'
+    compile 'com.orhanobut:dialogplus:1.11@aar'
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
 }

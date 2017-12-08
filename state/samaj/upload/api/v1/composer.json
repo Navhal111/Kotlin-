@@ -1,0 +1,14 @@
+{
+    "require": {
+        "slim/slim": "^3.8",
+        "bryanjhv/slim-session": "~3.0",
+        "tracy/tracy": "^2.4",
+        "slim/csrf": "^0.8.1",
+        "dyorg/slim-token-authentication": "^0.3.3",
+        "tuupola/slim-jwt-auth": "^2.3",
+        "mfacenet/hello-world": "v1.*"
+    },
+    "require-dev": {
+        "silalahi/slim-logger": "dev-master"
+    }
+}

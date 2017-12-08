@@ -45,8 +45,9 @@ class RecyleJson (var name: JSONArray,var playlistId:String,var ads :Interstitia
                 intent.putExtra("Title",json1.getString("title"))
                 context1.startActivity(intent)
                 ads.show()
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
             }
-
             Picasso.with(context1).load(imageurl).fit().into(holder.thummail)
         }else{
 
@@ -86,8 +87,8 @@ class RecyleJson (var name: JSONArray,var playlistId:String,var ads :Interstitia
         val title:TextView = itemView.find(R.id.title)
         val thummail:ImageView = itemView.find(R.id.imagethum)
         val video:CardView = itemView.find(R.id.card_view2)
-        var mAdView: AdView = itemView.find(R.id.adView)
-
+//        var mAdView: AdView = itemView.find(R.id.adView)
+        var mAdView:AdView = itemView.findViewById(R.id.adView)
         init {
 
         }

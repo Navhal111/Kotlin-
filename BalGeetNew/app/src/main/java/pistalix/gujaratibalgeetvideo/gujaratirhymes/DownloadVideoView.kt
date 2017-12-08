@@ -4,11 +4,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import com.github.johnpersano.supertoasts.library.Style
+import com.github.johnpersano.supertoasts.library.SuperActivityToast
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
 import kotlinx.android.synthetic.main.activity_download_video_view.*
-import org.jetbrains.anko.onUiThread
-import org.jetbrains.anko.toast
-import java.io.File
 
 class DownloadVideoView : AppCompatActivity() {
     var videoname:String? =null
@@ -29,7 +28,7 @@ class DownloadVideoView : AppCompatActivity() {
                 share_video(set.toString(),"com.whatsapp")
             }else{
 
-                toast("First Install App")
+                ToastInstallApp()
             }
 
         }
@@ -41,7 +40,7 @@ class DownloadVideoView : AppCompatActivity() {
                         "")
             }else{
 
-                toast("First Install App")
+                ToastInstallApp()
             }
         }
 
@@ -51,7 +50,7 @@ class DownloadVideoView : AppCompatActivity() {
                 share_video(set.toString(),"com.instagram.android")
             }else{
 
-                toast("First Install App")
+                ToastInstallApp()
             }
         }
 
@@ -61,7 +60,7 @@ class DownloadVideoView : AppCompatActivity() {
                 share_video(set.toString(),"com.bsb.hike")
             }else{
 
-                toast("First Install App")
+                ToastInstallApp()
             }
         }
 
@@ -72,7 +71,7 @@ class DownloadVideoView : AppCompatActivity() {
                 share_video(set.toString(),"com.facebook.orca")
             }else{
 
-                toast("First Install App")
+                ToastInstallApp()
             }
         }
 
@@ -91,7 +90,7 @@ class DownloadVideoView : AppCompatActivity() {
     }
 
     fun share_video(filepath:String,packeg:String) {
-        var string_path = Uri.fromFile(File(filepath))
+        var string_path =Uri.parse(filepath)
         val sharingIntent = Intent(Intent.ACTION_SEND)
         sharingIntent.type = "video/*"
         sharingIntent.`package` = packeg
@@ -100,8 +99,7 @@ class DownloadVideoView : AppCompatActivity() {
         try {
             startActivity(sharingIntent)
         } catch (e: android.content.ActivityNotFoundException) {
-                Toast.makeText(this, "First Install App...", Toast.LENGTH_SHORT).show();
-
+            ToastInstallApp()
         }
     }
 
@@ -124,4 +122,9 @@ class DownloadVideoView : AppCompatActivity() {
        intent.putExtra(Intent.EXTRA_STREAM, string_path)
        startActivity(Intent.createChooser(intent, "Share via"))
    }
+
+    fun ToastInstallApp(){
+
+        SuperActivityToast.create(this).setText("First Install App...").setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_LOLLIPOP).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
+    }
 }

@@ -31,3 +31,5 @@
  -dontwarn org.apache.commons.logging.**
 
  -dontwarn com.roughike.**
+
+ -dontwarn com.google.ads.mediation.facebook.*

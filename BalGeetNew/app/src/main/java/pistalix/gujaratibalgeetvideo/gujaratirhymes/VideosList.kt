@@ -22,7 +22,12 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.github.johnpersano.supertoasts.library.Style
+import com.github.johnpersano.supertoasts.library.SuperActivityToast
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_videos_list.view.*
 import org.jetbrains.anko.toast
 import org.json.JSONArray
@@ -32,16 +37,20 @@ import org.json.JSONObject
 class VideosList: Fragment() {
     var nextpage: String? = null
     var last_int=0
-    private var progress: ProgressDialog? = null
     var hasMore = true
     lateinit var rootView : View
     lateinit var mainJson: JSONArray
-
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.activity_videos_list, container, false)
         val playlistid = "PL86DbUdlKu1Ow7dppIwn91nf0Ynf7XU_P"
-        download()
+        var adRequest: AdRequest
+        mInterstitialAd = InterstitialAd(rootView.context)
+        adRequest = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest)
 
         val check = (ContextCompat.checkSelfPermission(rootView.context, Manifest.permission.ACCESS_NETWORK_STATE)== PackageManager.PERMISSION_GRANTED)
         if (!check) {
@@ -56,7 +65,6 @@ class VideosList: Fragment() {
 
         }else{
             toast("Check your Network Connection")
-            progress!!.cancel()
         }
 
 
@@ -106,26 +114,23 @@ class VideosList: Fragment() {
                         mainJson = jsona
                         if (setert.length() > 0) {
 
-//                                            json1.text=mainJson.toString()
                             rootView.recyclerView.layoutManager = LinearLayoutManager(rootView.context)
 //
-                            rootView.recyclerView.adapter = RecyleJson(mainJson,playlistid)
-                            progress!!.cancel()
+                            rootView.recyclerView.adapter = RecyleJson(mainJson,playlistid,mInterstitialAd)
+
                         }
                     }else{
 
                         toast("No video Found")
-                        progress!!.cancel()
+
                     }
 
 //                    json1.text=jsona.toString()
 
                 }, Response.ErrorListener {
             Toast.makeText(rootView.context, "Check your Network Connection", Toast.LENGTH_SHORT).show();
-//                toast("somthing went wrong")
 //
         })
-
 
 
         queyj2.add(jsonobj2)
@@ -137,7 +142,7 @@ class VideosList: Fragment() {
                     val layoutManager = recyclerView!!.layoutManager as LinearLayoutManager
                     //position starts at 0
                     if (layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.itemCount - 1) {
-
+                        SuperActivityToast.create(rootView.context,Style(),Style.TYPE_PROGRESS_CIRCLE).setText("Loading..").setDuration(Style.DURATION_SHORT).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_GREEN)).setAnimations(Style.ANIMATIONS_POP).show()
                         if(last_int>=12 && nextpage != null){
                             var imageurl: String
                             val queyj2 = Volley.newRequestQueue(rootView.context)
@@ -219,34 +224,8 @@ class VideosList: Fragment() {
 
         return rootView
     }
+    fun ToastInstallApp(str :String){
 
-    fun download() {
-        progress = ProgressDialog(rootView.context)
-        progress!!.setMessage("Keep Calm,\n" +
-                "we are requesting video")
-        progress!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        progress!!.isIndeterminate = true
-        progress!!.progress = 0
-        progress!!.show()
-        val totalProgressTime = 100
-        val t = object : Thread() {
-            override fun run() {
-                var jumpTime = 0
-
-                while (jumpTime < totalProgressTime) {
-                    try {
-                        Thread.sleep(200)
-                        jumpTime += 5
-                        progress!!.setProgress(jumpTime)
-                    } catch (e: InterruptedException) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace()
-                    }
-
-                }
-            }
-        }
-        t.start()
-
+        SuperActivityToast.create(rootView.context).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
     }
 }

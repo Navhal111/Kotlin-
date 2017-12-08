@@ -26,10 +26,7 @@ import java.io.File
 
 
 class DownloadVideos : Fragment(){
-    private var progress: ProgressDialog? = null
-    private val REQUEST_WRITE_EXTERNAL_STORAGE = 1
     lateinit var rootView : View
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.activity_download_videos, container, false)
@@ -56,36 +53,6 @@ class DownloadVideos : Fragment(){
 
     }
 
-    fun download() {
-        progress = ProgressDialog(rootView.context)
-        progress!!.setMessage("Keep Calm,\n" +
-                "we are requesting video")
-        progress!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        val res = resources
-        progress!!.isIndeterminate = true
-        progress!!.progress = 0
-        progress!!.show()
-        val totalProgressTime = 100
-        val t = object : Thread() {
-            override fun run() {
-                var jumpTime = 0
-
-                while (jumpTime < totalProgressTime) {
-                    try {
-                        Thread.sleep(200)
-                        jumpTime += 5
-                        progress!!.setProgress(jumpTime)
-                    } catch (e: InterruptedException) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace()
-                    }
-
-                }
-            }
-        }
-        t.start()
-
-    }
     fun ToastInstallApp(str :String){
 
         SuperActivityToast.create(rootView.context).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();

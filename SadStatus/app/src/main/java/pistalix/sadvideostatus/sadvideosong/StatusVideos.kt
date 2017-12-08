@@ -22,28 +22,31 @@ import org.apache.commons.io.FileUtils
 import java.io.IOException
 
 
-class StatusVideos (var name: ArrayList<File>): RecyclerView.Adapter<StatusVideos.ViewHolder>()
+class StatusVideos (var name: ArrayList<File>,var ads :InterstitialAd): RecyclerView.Adapter<StatusVideos.ViewHolder>()
 {
     lateinit var context1:Context
     val externalDirectory = Environment.getExternalStorageDirectory().toString()
 
-    var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         Glide.with(context1).load(name[position].toString()).into(holder.video)
+        ads.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
+            }
+        }
 
-//        val thumb = ThumbnailUtils.createVideoThumbnail(name[position].toString(), MediaStore.Video.Thumbnails.MINI_KIND);
-//
-//        holder.video.setImageBitmap(thumb)
 
         holder.video.setOnClickListener{
             val intent = Intent(context1, WhatsappView::class.java)
             intent.putExtra("videoid", name[position].toString())
             intent.putExtra("Name",name[position].name)
-            see_ad()
             context1.startActivity(intent)
-
+            ads.show()
+            val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+            ads.loadAd(adRequest)
         }
-        val folder = File(externalDirectory+"/"+externalDirectory+ "/SadStatus/"+name[position].name)
+        val folder = File(externalDirectory+ "/SadStatus/"+name[position].name)
         holder.download_status.setOnClickListener{
              var file  = File(name[position].toString())
             try {
@@ -85,30 +88,5 @@ class StatusVideos (var name: ArrayList<File>): RecyclerView.Adapter<StatusVideo
         SuperActivityToast.create(context1).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_GREEN)).setAnimations(Style.ANIMATIONS_POP).show();
     }
 
-    private fun showInterstitial() {
-        if (mInterstitialAd!!.isLoaded()) {
-            mInterstitialAd!!.show()
-        }
-    }
 
-
-    fun see_ad(){
-
-        val ads = context1.getResources().getString(R.string.interstial_ads)
-        mInterstitialAd = InterstitialAd(context1)
-
-        // set the ad unit ID
-        mInterstitialAd!!.adUnitId = ads
-
-        val adRequest1 = AdRequest.Builder()
-                .build()
-
-        mInterstitialAd!!.loadAd(adRequest1)
-
-        mInterstitialAd!!.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                showInterstitial()
-            }
-        }
-    }
 }

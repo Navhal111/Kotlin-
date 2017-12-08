@@ -7,6 +7,8 @@ import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.find
@@ -15,14 +17,10 @@ import org.json.JSONObject
 
 
 //https://i.ytimg.com/vi/I4wkxIUQi1g/default.jpg
-class RecycleJsonSug (var name: JSONArray,var playlistId:String): RecyclerView.Adapter<RecycleJsonSug.ViewHolder>()
+class RecycleJsonSug (var name: JSONArray,var playlistId:String,var ads :InterstitialAd): RecyclerView.Adapter<RecycleJsonSug.ViewHolder>()
 {
     lateinit var context1:Context
-    private val ITAG_FOR_AUDIO = 140
-    private var videosFound: ListView? = null
-    internal var mainLayout: LinearLayout? = null
 
-    var mInterstitialAd: InterstitialAd? = null
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         var json1:JSONObject
         json1 = name.getJSONObject(position)
@@ -30,16 +28,21 @@ class RecycleJsonSug (var name: JSONArray,var playlistId:String): RecyclerView.A
         var videoid =json1.getString("id")
         var imageurl=json1.getString("imageurl")
 
-
+        ads.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                val adRequest = AdRequest.Builder().addTestDevice(context1.getString(R.string.interstial_ads)).build()
+                ads.loadAd(adRequest)
+            }
+        }
 
         holder.video.setOnClickListener {
 
-            val intent = Intent(context1, VideoView::class.java)
+            val intent = Intent(context1, MainVideoView::class.java)
             intent.putExtra("videoid", videoid)
             intent.putExtra("playlistId", playlistId)
             intent.putExtra("Title",json1.getString("title"))
             context1.startActivity(intent)
-
+            ads.show()
             (context1 as Activity).finish()
         }
 

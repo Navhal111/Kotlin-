@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Motivational Quotes</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="interstial_ads">ca-app-pub-9611503142284796/6681403869</string>
 </resources>

@@ -36,7 +36,7 @@ class VideosList: Fragment() {
     var hasMore = true
     lateinit var rootView : View
     lateinit var mainJson: JSONArray
-    internal lateinit var mInterstitialAd: InterstitialAd
+    private lateinit var mInterstitialAd: InterstitialAd
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.activity_videos_list, container, false)
@@ -49,8 +49,7 @@ class VideosList: Fragment() {
         }else{
             ToastInstallApp("Check your Network Connection")
         }
-        var adRequest = AdRequest.Builder()
-                .build()
+        var adRequest: AdRequest
         mInterstitialAd = InterstitialAd(rootView.context)
         adRequest = AdRequest.Builder().build()
         val unitId = getString(R.string.interstial_ads)

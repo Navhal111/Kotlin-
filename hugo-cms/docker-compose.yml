@@ -1,0 +1,46 @@
+version: '2'
+services:
+    mysql:
+        image: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=temp123
+            - MYSQL_DATABASE=samaj_master
+        ports:
+            - 3309:3306
+        volumes:
+            - ./data/mysql:/var/lib/mysql
+            - ./hugo/mysql:/docker-entrypoint-initdb.d
+        networks:
+            - back
+
+    php:
+        build: ./hugo
+        environment:
+            - MYSQL_ROOT_PASSWORD=temp123
+            - MYSQL_DATABASE=samaj_master
+            - ADMIN_IP=192.168.0.3
+            - BACKEND_IP=192.168.0.3
+        ports:
+            - 8088:80
+        volumes:
+            - ./hugo/upload/api:/var/www/html/api
+            - ./hugo/upload/admin:/var/www/html/admin
+        links:
+            - mysql
+        networks:
+            - back
+
+    composer:
+        image: composer/composer
+        working_dir: /var/www/html/api/v1
+        command: install
+        volumes:
+            - ./hugo/upload/api/v1:/var/www/html/api/v1
+        links:
+            - php
+        networks:
+            - back
+
+networks:
+  back:
+    driver: bridge

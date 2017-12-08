@@ -1,18 +1,14 @@
 package pistalix.romanticvideostatus.romanticvideosong
 
 import android.app.Fragment
-import android.app.ProgressDialog
 import android.content.Context
 import android.net.ConnectivityManager
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -20,7 +16,9 @@ import com.android.volley.toolbox.Volley
 import com.github.johnpersano.supertoasts.library.Style
 import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_videos_list.view.*
 import org.jetbrains.anko.toast
 import org.json.JSONArray
@@ -31,24 +29,27 @@ class VideosList: Fragment() {
     private var mAdView: AdView? = null
     var nextpage: String? = null
     var last_int=0
-    private var progress: ProgressDialog? = null
     var hasMore = true
     lateinit var rootView : View
     lateinit var mainJson: JSONArray
-
+    internal lateinit var mInterstitialAd: InterstitialAd
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.activity_videos_list, container, false)
         val playlistid = "PL86DbUdlKu1Oy6Rudwf5I8ASi1eEshKCW"
-        download()
         val connectivityManager = rootView.context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val nwInfo = connectivityManager.activeNetworkInfo
         if (nwInfo != null && nwInfo.isConnectedOrConnecting) {
 
         }else{
             ToastInstallApp("Check your Network Connection")
-            progress!!.cancel()
         }
+        var adRequest: AdRequest
+        mInterstitialAd = InterstitialAd(rootView.context)
+        adRequest = AdRequest.Builder().build()
+        val unitId = getString(R.string.interstial_ads)
+        mInterstitialAd.setAdUnitId(unitId)
+        mInterstitialAd.loadAd(adRequest)
         var s = 0
         var stringid: String? = null
 
@@ -105,12 +106,12 @@ class VideosList: Fragment() {
 //                                            json1.text=mainJson.toString()
                             rootView.recyclerView.layoutManager = LinearLayoutManager(rootView.context)
 //
-                            rootView.recyclerView.adapter = RecyleJson(mainJson,playlistid)
-                            progress!!.cancel()
+                            rootView.recyclerView.adapter = RecyleJson(mainJson,playlistid,mInterstitialAd)
+
                         }
                     }else{
                         ToastInstallApp("No video Found")
-                        progress!!.cancel()
+
                     }
 
 //                    json1.text=jsona.toString()
@@ -132,7 +133,7 @@ class VideosList: Fragment() {
                     val layoutManager = recyclerView!!.layoutManager as LinearLayoutManager
                     //position starts at 0
                     if (layoutManager.findLastCompletelyVisibleItemPosition() == layoutManager.itemCount - 1) {
-
+                        SuperActivityToast.create(rootView.context,Style(),Style.TYPE_PROGRESS_CIRCLE).setText("Loading..").setDuration(Style.DURATION_SHORT).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_GREEN)).setAnimations(Style.ANIMATIONS_POP).show()
                         if(last_int>=12 && nextpage != null){
                             var imageurl: String? = null;
                             val queyj2 = Volley.newRequestQueue(rootView.context)
@@ -219,36 +220,6 @@ class VideosList: Fragment() {
         return rootView
     }
 
-    fun download() {
-        progress = ProgressDialog(rootView.context)
-        progress!!.setMessage("Keep Calm,\n" +
-                "we are requesting video")
-        progress!!.setProgressStyle(ProgressDialog.STYLE_SPINNER)
-        val res = resources
-        progress!!.isIndeterminate = true
-        progress!!.progress = 0
-        progress!!.show()
-        val totalProgressTime = 100
-        val t = object : Thread() {
-            override fun run() {
-                var jumpTime = 0
-
-                while (jumpTime < totalProgressTime) {
-                    try {
-                        Thread.sleep(200)
-                        jumpTime += 5
-                        progress!!.setProgress(jumpTime)
-                    } catch (e: InterruptedException) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace()
-                    }
-
-                }
-            }
-        }
-        t.start()
-
-    }
 
     fun ToastInstallApp(str :String){
 

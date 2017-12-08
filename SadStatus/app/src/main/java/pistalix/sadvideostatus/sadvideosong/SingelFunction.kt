@@ -111,6 +111,7 @@ class SingelFunction {
 
                             i++
                         }
+
                         try{
                             mainJson = jsona
                             val txtView = (contex as Activity).findViewById<View>(R.id.recyclerViewVideosuggestion) as RecyclerView

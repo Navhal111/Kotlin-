@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Fitness Motivation Status</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="interstial_ads">ca-app-pub-9611503142284796/7297994308</string>
 </resources>

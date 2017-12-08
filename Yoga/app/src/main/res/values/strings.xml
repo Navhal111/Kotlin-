@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Yoga Motivation Status</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="interstial_ads">ca-app-pub-9611503142284796/4186236495</string>
 </resources>

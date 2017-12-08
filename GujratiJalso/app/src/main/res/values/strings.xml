@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Gujarati Jalso</string>
+    <!--<string name="interstial_ads">ca-app-pub-3940256099942544/1033173712</string>-->
+    <!--<string name="banner_ads">ca-app-pub-3940256099942544/6300978111</string>-->
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="interstial_ads">ca-app-pub-9611503142284796/1714279532</string>
+    <string name="banner_ads">ca-app-pub-9611503142284796/2292864030</string>
 </resources>

@@ -1,0 +1,4 @@
+/vendor/
+.ant-targets-build.xml
+.idea
+cache.properties
