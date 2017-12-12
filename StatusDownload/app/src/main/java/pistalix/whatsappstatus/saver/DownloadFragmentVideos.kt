@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.github.johnpersano.supertoasts.library.Style
 import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
@@ -20,7 +21,7 @@ import java.io.File
 import java.util.*
 
 
-class DownloadFragmentVideos() : Fragment() {
+class DownloadFragmentVideos : Fragment() {
     val externalDirectory = Environment.getExternalStorageDirectory().toString()
     lateinit var rootView :View
     internal var isMultiSelect = false
@@ -34,6 +35,14 @@ class DownloadFragmentVideos() : Fragment() {
         rootView = inflater!!.inflate(R.layout.status_whatsapp, container, false)
         val imageResource = resources.getIdentifier("@drawable/ic_delete", null, rootView.context.packageName)
         rootView.filter.setImageDrawable(resources.getDrawable(imageResource))
+        val ads = rootView.context.getResources().getString(R.string.interstial_ads)
+        mInterstitialAd = InterstitialAd(rootView.context)
+        mInterstitialAd!!.adUnitId = ads
+
+        val adRequest1 = AdRequest.Builder()
+                .build()
+        mInterstitialAd!!.loadAd(adRequest1)
+
         var list = DounloadVideosName()
         var i=list.size-1
         var j=0
@@ -70,11 +79,13 @@ class DownloadFragmentVideos() : Fragment() {
                     Multiselect(position)
                     refressAdapter()
                 }else{
-                    val intent = Intent(rootView.context, WhatsappView::class.java)
+                    val intent = Intent(activity, WhatsappView::class.java)
                     intent.putExtra("videoid", MainFiles[position].toString())
                     intent.putExtra("Name",MainFiles[position].name)
-                    see_ad()
                     startActivity(intent)
+//                    if(mInterstitialAd!!.isLoaded){
+//                       mInterstitialAd!!.show()
+//                    }
                 }
 
 
@@ -102,8 +113,8 @@ class DownloadFragmentVideos() : Fragment() {
                     MainFiles.remove(multiselect_list[i])
                     i++;
                 }
-                see_ad()
                 ToastInstallSucc("Status Deleted From Storage/WhatsappStatusSaver")
+                mInterstitialAd!!.show()
                 val id = resources.getIdentifier("pistalix.whatsappstatus.saver:drawable/ic_delete", null, null)
                 rootView.filter.setImageResource(id)
                 download = false
@@ -167,25 +178,6 @@ class DownloadFragmentVideos() : Fragment() {
         SuperActivityToast.create(rootView.context).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
     }
 
-    fun see_ad(){
-
-        val ads = rootView.context.getResources().getString(R.string.interstial_ads)
-        mInterstitialAd = InterstitialAd(rootView.context)
-
-        // set the ad unit ID
-        mInterstitialAd!!.adUnitId = ads
-
-        val adRequest1 = AdRequest.Builder()
-                .build()
-
-        mInterstitialAd!!.loadAd(adRequest1)
-
-        mInterstitialAd!!.adListener = object : AdListener() {
-            override fun onAdLoaded() {
-                showInterstitial()
-            }
-        }
-    }
     private fun showInterstitial() {
         if (mInterstitialAd!!.isLoaded()) {
             mInterstitialAd!!.show()

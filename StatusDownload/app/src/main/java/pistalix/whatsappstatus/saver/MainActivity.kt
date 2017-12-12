@@ -9,20 +9,18 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Gravity
 import android.view.View
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import com.github.johnpersano.supertoasts.library.Style
-import com.github.johnpersano.supertoasts.library.SuperActivityToast
-import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
+import android.widget.TextView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import org.json.JSONObject
+import com.orhanobut.dialogplus.DialogPlus
+import com.orhanobut.dialogplus.ViewHolder
+import org.jetbrains.anko.toast
 import java.io.File
 import java.util.ArrayList
 
@@ -31,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_WRITE_EXTERNAL_STORAGE = 1
     var MainFiles : ArrayList<File>? = null
     private var mAdView: AdView? = null
+    lateinit var dailog: DialogPlus
     val externalDirectory = Environment.getExternalStorageDirectory().toString()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +45,18 @@ class MainActivity : AppCompatActivity() {
                     REQUEST_WRITE_EXTERNAL_STORAGE)
         }
 
-        var virsion = BuildConfig.VERSION_NAME
+        try{
+            var check_update = intent.getStringExtra("update");
+            var msg = intent.getStringExtra("msg")
+            if(check_update == "1"){
+                update_app(msg)
+            }
+        }catch (e:NullPointerException){
 
-//        ToastInstallSucc(virsion)
-//        check_virsion()
-//        https://androidquery.appspot.com/api/market?app=pistalix.whatsapp.video.status
+        }catch (e:IllegalArgumentException){
+
+        }catch (e:Exception){
+        }
         val folder = File(externalDirectory + "/WhatsappStatusSaver")
         if (!folder.exists()) {
             folder.mkdir()
@@ -101,29 +107,80 @@ class MainActivity : AppCompatActivity() {
         }
         return inFiles
     }
-    fun check_virsion(){
-        val queyj2 = Volley.newRequestQueue(this)
-        //        https@ //www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=12&playlistId="+"+playlistid+"+"&key=AIzaSyDFaZ9yHK_TqYvAmNG9VGUZUinAwNlCyKs
-        val jsonobj2 = JsonObjectRequest(Request.Method.GET, "https://androidquery.appspot.com/api/market?app=pistalix.whatsappstatus.saver", null,
 
-                Response.Listener<JSONObject>
-                {
-                    response ->
-                    var Json:JSONObject= response
-                    ToastInstallSucc(Json.getString("version"))
+    fun update_app(str:String){
 
-                }, Response.ErrorListener {
-                     ToastInstallApp("wrong")
-//
-        })
-        queyj2.add(jsonobj2)
+        dailog = DialogPlus.newDialog(this).setGravity(Gravity.CENTER).setContentHolder(ViewHolder(R.layout.update_app)).setInAnimation(R.anim.abc_fade_in).create()
+        try{
+
+            var yes = dailog.findViewById(R.id.yes_button)
+            var no = dailog.findViewById(R.id.no_button)
+            var msg : TextView = dailog.findViewById(R.id.update_msg) as TextView
+            msg.text =str
+            yes.setOnClickListener{
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=pistalix.whatsappstatus.saver")))
+                } catch (anfe: android.content.ActivityNotFoundException) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=pistalix.whatsappstatus.saver")))
+                }
+            }
+            no.setOnClickListener{
+                try{
+                    dailog.dismiss()
+                }catch (e :NullPointerException){
+
+                    toast("error")
+                }catch (e:IllegalArgumentException){
+                    toast("error")
+                }
+
+
+            }
+            dailog.show()
+        }catch (e :NullPointerException){
+
+            toast("error")
+        }catch (e:IllegalArgumentException){
+            toast("error")
+        }
+
     }
-    fun ToastInstallSucc(str :String){
 
-        SuperActivityToast.create(this).setText(str).setDuration(Style.DURATION_VERY_LONG).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_GREEN)).setAnimations(Style.ANIMATIONS_POP).show();
-    }
-    fun ToastInstallApp(str :String){
+    override fun onBackPressed() {
+        dailog = DialogPlus.newDialog(this).setGravity(Gravity.CENTER).setContentHolder(ViewHolder(R.layout.activity_back_button)).setInAnimation(R.anim.abc_fade_in).create()
+        try{
 
-        SuperActivityToast.create(this).setText(str).setDuration(Style.DURATION_VERY_LONG).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
+            var yes = dailog.findViewById(R.id.yes_button)
+            var no = dailog.findViewById(R.id.no_button)
+            var rate = dailog.findViewById(R.id.rate_app_back)
+            yes.setOnClickListener{
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://developer?id=Pistalix%20Software%20Solutions")))
+                } catch (anfe: android.content.ActivityNotFoundException) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/developer?id=Pistalix%20Software%20Solutions")))
+                }
+            }
+            no.setOnClickListener{
+
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+
+            }
+            rate.setOnClickListener{
+                try {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=pistalix.whatsappstatus.saver")))
+                } catch (anfe: android.content.ActivityNotFoundException) {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=pistalix.whatsappstatus.saver")))
+                }
+            }
+            dailog.show()
+        }catch (e :NullPointerException){
+            toast("Something went wrong")
+        }catch (e:IllegalArgumentException){
+            toast("Something went wrong")
+
+        }
     }
+
 }

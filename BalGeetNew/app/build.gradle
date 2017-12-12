@@ -11,8 +11,8 @@ android {
         applicationId "pistalix.gujaratibalgeetvideo.gujaratirhymes"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 6
-        versionName "6.0"
+        versionCode 7
+        versionName "7.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     configurations.all {

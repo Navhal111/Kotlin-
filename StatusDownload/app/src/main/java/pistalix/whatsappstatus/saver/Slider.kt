@@ -5,8 +5,9 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.view.Window
-import android.view.WindowManager
+import com.github.johnpersano.supertoasts.library.Style
+import com.github.johnpersano.supertoasts.library.SuperActivityToast
+import com.github.johnpersano.supertoasts.library.utils.PaletteUtils
 import kotlinx.android.synthetic.main.activity_slider.*
 import java.io.File
 import java.util.ArrayList
@@ -52,12 +53,20 @@ class Slider : AppCompatActivity() {
         viewPager.currentItem = position
 
         share.setOnClickListener{
-            var uri = Uri.parse(MainFiles[viewPager.currentItem].toString())
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_TEXT, "Share Whatsapp Status")
-            intent.putExtra(Intent.EXTRA_STREAM, uri)
-            startActivity(Intent.createChooser(intent, "Share via"))
+            try {
+                var uri = Uri.parse(MainFiles[viewPager.currentItem].toString())
+                val intent = Intent(Intent.ACTION_SEND)
+                intent.type = "image/*"
+                intent.putExtra(Intent.EXTRA_TEXT, "Share Whatsapp Status")
+                intent.putExtra(Intent.EXTRA_STREAM, uri)
+                startActivity(Intent.createChooser(intent, "Share via"))
+            }catch (e:NullPointerException){
+                    ToastMainError("Something went wrong")
+            }catch (e:IllegalArgumentException){
+                    ToastMainError("Something went wrong")
+            }catch (e:Exception){
+                    ToastMainError("Something went wrong")
+            }
         }
     }
     fun DounloadVideosName(): ArrayList<File> {
@@ -81,5 +90,8 @@ class Slider : AppCompatActivity() {
         finish()
         overridePendingTransition(R.xml.nathing,R.xml.slide_out_down)
 
+    }
+    fun ToastMainError(Str :String){
+        SuperActivityToast.create(this).setText(Str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show()
     }
 }

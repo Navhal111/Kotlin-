@@ -56,6 +56,7 @@ class FragmentVideos() : Fragment() {
 
             ToastInstallApp("Not yet Seen any story ")
         }
+
         rootView.recyclerView.addOnItemTouchListener(RecyclerItemClickListener(rootView.context, rootView.recyclerView, object : RecyclerItemClickListener.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
                 if(isMultiSelect){
@@ -79,7 +80,6 @@ class FragmentVideos() : Fragment() {
                 refressAdapter()
             }
         }))
-
         rootView.filter.setOnClickListener{
 
             if(!download){

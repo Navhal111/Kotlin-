@@ -14,7 +14,7 @@
         android:roundIcon="@drawable/final_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Splash" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +27,8 @@
             android:name=".Slider"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".DownloadMainTab" />
-        <activity android:name=".DownloadSlider"></activity>
+        <activity android:name=".DownloadSlider" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

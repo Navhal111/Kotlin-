@@ -5,4 +5,5 @@
     <!--<string name="interstial_ads">ca-app-pub-3940256099942544/1033173712</string>-->
     <!--<string name="banner_ads">ca-app-pub-3940256099942544/6300978111</string>-->
     <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="applist">https://infinitegeek.gitlab.io/appVersion/applist.json</string>
 </resources>

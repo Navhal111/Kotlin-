@@ -6,16 +6,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
-    tools:context="pistalix.gujaratibalgeetvideo.gujaratirhymes.Splash"
+    tools:context="pistalix.whatsappstatus.saver.Splash"
     android:gravity="center">
 
     <ImageView
         android:id="@+id/splashlogo"
-        android:layout_width="1000dp"
+        android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/final_logo"
         />
+
 
 
 </LinearLayout>

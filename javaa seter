@@ -300,3 +300,18 @@ public class SheetGoogle extends Activity
     }
 }
 
+
+    private val btnListener = object : View.OnClickListener {
+
+        override fun onClick(v: View) {
+            when (v.id) {
+                R.id.rotetleft -> {
+                    cropImageView.rotateImage(CropImageView.RotateDegrees.ROTATE_M90D)
+                }
+                R.id.rotetright ->{
+                    cropImageView.rotateImage(CropImageView.RotateDegrees.ROTATE_90D)
+                }
+
+            }
+        }
+    }

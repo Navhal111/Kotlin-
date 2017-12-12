@@ -36,10 +36,7 @@ class StatusImage (var name: ArrayList<File>): RecyclerView.Adapter<StatusImage.
                 Glide.with(context1).load(name[position].toString()).into(holder.video)
             }
 
-
-
         holder.video.setOnClickListener{
-
             val intent = Intent(context1, WhatsappView::class.java)
             intent.putExtra("videoid", name[position].toString())
             intent.putExtra("Name",name[position].name)

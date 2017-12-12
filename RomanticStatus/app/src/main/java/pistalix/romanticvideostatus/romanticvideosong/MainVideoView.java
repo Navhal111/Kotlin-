@@ -68,22 +68,23 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_video_view);
-
+        share_image =  (ImageView) findViewById(R.id.share_video);
+        download_image =  (ImageView) findViewById(R.id.whatsapp_share);
+        whatsapp =  (ImageView) findViewById(R.id.whatsapp);
+        instagram =  (ImageView) findViewById(R.id.insta);
+        hike =  (ImageView) findViewById(R.id.hike);
+        fb =  (ImageView) findViewById(R.id.fb);
+        fbmsg =  (ImageView) findViewById(R.id.fbmsg);
+        main_share = (ImageView)findViewById(R.id.main_share);
+        DownloadBAr = (NumberProgressBar)findViewById(R.id.DownloadBAr);
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youtubevideo);
+        VideoTitle =  (TextView) findViewById(R.id.videotitle);
         try{
             String Title_create = getIntent().getStringExtra("Title");
             Title = getStringOfLettersOnly(Title_create);
             VideoId = getIntent().getStringExtra("videoid");
             playlistId = getIntent().getStringExtra("playlistId");
 
-            share_image =  (ImageView) findViewById(R.id.share_video);
-            download_image =  (ImageView) findViewById(R.id.whatsapp_share);
-            whatsapp =  (ImageView) findViewById(R.id.whatsapp);
-            instagram =  (ImageView) findViewById(R.id.insta);
-            hike =  (ImageView) findViewById(R.id.hike);
-            fb =  (ImageView) findViewById(R.id.fb);
-            fbmsg =  (ImageView) findViewById(R.id.fbmsg);
-            main_share = (ImageView)findViewById(R.id.main_share);
-            DownloadBAr = (NumberProgressBar)findViewById(R.id.DownloadBAr);
 
 
             mAdView = (AdView) findViewById(R.id.adView);
@@ -108,8 +109,6 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
             if(!isNetworkAvailable()){
                 ToastMsgFail("Check your Network Connection");
             }
-            youTubeView = (YouTubePlayerView) findViewById(R.id.youtubevideo);
-            VideoTitle =  (TextView) findViewById(R.id.videotitle);
             VideoTitle.setText(Title_create);
             youTubeView.initialize(DEVELOPER_KEY, this);
 

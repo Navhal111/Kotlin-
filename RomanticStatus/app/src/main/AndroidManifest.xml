@@ -14,7 +14,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".Splash"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +25,9 @@
         </activity>
         <activity android:name=".WhatsappView" />
         <activity android:name=".DownloadVideoView" />
-        <activity android:name=".MainVideoView"></activity>
+        <activity android:name=".MainVideoView" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ListApp"></activity>
     </application>
 
 </manifest>

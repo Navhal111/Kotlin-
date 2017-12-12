@@ -22,6 +22,7 @@ import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_videos_list.view.*
 import org.jetbrains.anko.toast
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 
 
@@ -62,6 +63,7 @@ class VideosList: Fragment() {
                 Response.Listener<JSONObject>
                 {
                     response ->
+                    try{
                     val setert: JSONArray = response.get("items") as JSONArray
                     if(setert.length()>0){
                         val jsona = JSONArray()
@@ -115,7 +117,15 @@ class VideosList: Fragment() {
                     }
 
 //                    json1.text=jsona.toString()
-
+                    }catch (e:NullPointerException){
+                        ToastInstallApp("Something Went wrong")
+                    }catch (e: JSONException){
+                        ToastInstallApp("Something Went wrong")
+                    }catch (e:IllegalArgumentException){
+                        ToastInstallApp("Something Went wrong")
+                    }catch (e:Exception){
+                        ToastInstallApp("Something Went wrong")
+                    }
                 }, Response.ErrorListener {
 //                    ToastInstallApp("Check your Network Connection")
 //                toast("somthing went wrong")
@@ -143,7 +153,7 @@ class VideosList: Fragment() {
                                     Response.Listener<JSONObject>
                                     {
                                         response ->
-
+                                        try{
                                         val setert: JSONArray = response.get("items") as JSONArray
 
                                         if(setert.length()>0){
@@ -197,7 +207,15 @@ class VideosList: Fragment() {
                                         }
 
 //                                        mainJson = jsona
-
+                                        }catch (e:NullPointerException){
+                                            ToastInstallApp("Something Went wrong")
+                                        }catch (e: JSONException){
+                                            ToastInstallApp("Something Went wrong")
+                                        }catch (e:IllegalArgumentException){
+                                            ToastInstallApp("Something Went wrong")
+                                        }catch (e:Exception){
+                                            ToastInstallApp("Something Went wrong")
+                                        }
                                     }, Response.ErrorListener {
                                 ToastInstallApp("Check your Network Connection")
 //                toast("somthing went wrong")

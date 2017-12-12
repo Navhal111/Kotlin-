@@ -13,22 +13,20 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Splash">
+        android:theme="@style/AppTheme">
+        <activity android:name=".Splash" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GeetText" />
-        <!--<activity android:name=".VideoView" />-->
-        <activity
-            android:name=".BackButton"
-            android:theme="@style/AppTheme.Custome" />
-        <activity android:name=".DownloadVideoView" />
-        <activity android:name=".MainFregment" />
-        <activity android:name=".MainVideoView"></activity>
+        <activity android:name=".GeetText" android:theme="@style/AppTheme.NoActionBar"/>
+        <!-- <activity android:name=".VideoView" /> -->
+        <activity android:name=".DownloadVideoView" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainFregment" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MainVideoView" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ListApp"></activity>
     </application>
 
 </manifest>

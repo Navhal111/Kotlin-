@@ -1,11 +1,12 @@
-package pistalix.gujaratibalgeetvideo.gujaratirhymes
+package pistalix.whatsappstatus.saver
 
+import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
-import android.os.Handler
-import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Build
+import android.os.Handler
 import android.view.animation.AnimationUtils
 import com.android.volley.Request
 import com.android.volley.Response
@@ -21,15 +22,13 @@ import org.json.JSONObject
 
 
 class Splash : AppCompatActivity() {
-    private val SPLASH_TIME_OUT = 2000
+    private val SPLASH_TIME_OUT = 4000
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         var  zoomout = AnimationUtils.loadAnimation(this@Splash, R.anim.zoomout)
-//        zoomout.restrictDuration(2000)
         splashlogo.animation = zoomout
         splashlogo.startAnimation(zoomout)
-
         Handler().postDelayed(Runnable
 
         {
@@ -44,17 +43,17 @@ class Splash : AppCompatActivity() {
                             Response.Listener<JSONObject> {
                                 response ->
                                 try{
-                                    val Newvirsion : JSONObject = response.getJSONObject("BallGeet")
+                                    val Newvirsion : JSONObject = response.getJSONObject("WhatsappSaver")
                                     var virsion  =Newvirsion.getString("virsion")
                                     if(Integer.parseInt(virsion) > CurruntVirsion){
-                                        val intent = Intent(this@Splash, MainFregment::class.java)
+                                        val intent = Intent(this@Splash, MainActivity::class.java)
                                         intent.putExtra("update", "1")
                                         intent.putExtra("msg",Newvirsion.getString("msg"))
                                         startActivity(intent)
                                         finish()
                                     }else{
 
-                                        val intent = Intent(this@Splash, MainFregment::class.java)
+                                        val intent = Intent(this@Splash, MainActivity::class.java)
                                         intent.putExtra("update", "0")
                                         startActivity(intent)
                                         finish()
@@ -81,7 +80,7 @@ class Splash : AppCompatActivity() {
                 }
             }else{
                 SuperActivityToast.create(this).setText("Check Your Network Connection").setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show()
-                val i = Intent(this@Splash, MainFregment::class.java)
+                val i = Intent(this@Splash, MainActivity::class.java)
                 intent.putExtra("update", "0")
                 startActivity(i)
                 finish()
@@ -92,3 +91,4 @@ class Splash : AppCompatActivity() {
         }, SPLASH_TIME_OUT.toLong())
     }
 }
+

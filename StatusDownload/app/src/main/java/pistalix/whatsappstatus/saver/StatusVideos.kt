@@ -38,14 +38,6 @@ class StatusVideos (var name: ArrayList<File>,var select : ArrayList<File>): Rec
 
             holder.download_status.visibility = View.GONE
         }
-//        holder.video.setOnClickListener{
-//            val intent = Intent(context1, WhatsappView::class.java)
-//            intent.putExtra("videoid", name[position].toString())
-//            intent.putExtra("Name",name[position].name)
-//            see_ad()
-//            context1.startActivity(intent)
-//
-//        }
         val folder = File(externalDirectory+"/WhatsappStatusSaver/"+name[position].name)
         holder.download_status.setOnClickListener{
             var file  = File(name[position].toString())
@@ -89,9 +81,4 @@ class StatusVideos (var name: ArrayList<File>,var select : ArrayList<File>): Rec
         SuperActivityToast.create(context1).setText(str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_GREEN)).setAnimations(Style.ANIMATIONS_POP).show();
     }
 
-    private fun showInterstitial() {
-        if (mInterstitialAd!!.isLoaded()) {
-            mInterstitialAd!!.show()
-        }
-    }
 }

@@ -87,7 +87,6 @@ class RecyleJson (var name: JSONArray,var playlistId:String,var ads :Interstitia
         val title:TextView = itemView.find(R.id.title)
         val thummail:ImageView = itemView.find(R.id.imagethum)
         val video:CardView = itemView.find(R.id.card_view2)
-//        var mAdView: AdView = itemView.find(R.id.adView)
         var mAdView:AdView = itemView.findViewById(R.id.adView)
         init {
 

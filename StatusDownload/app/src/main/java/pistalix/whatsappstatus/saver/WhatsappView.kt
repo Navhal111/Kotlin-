@@ -2,8 +2,10 @@ package pistalix.whatsappstatus.saver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.FileUriExposedException
 import com.github.johnpersano.supertoasts.library.Style
 import com.github.johnpersano.supertoasts.library.SuperActivityToast
 import kotlinx.android.synthetic.main.activity_whatsapp_view.*
@@ -15,23 +17,25 @@ import android.widget.MediaController
 
 
 class WhatsappView : AppCompatActivity() {
-    var mInterstitialAd: InterstitialAd? = null
     var videourl: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_whatsapp_view)
         overridePendingTransition(R.xml.enter, R.xml.exit);
-        var ads = applicationContext.getResources().getString(R.string.interstial_ads)
         videourl = intent.getStringExtra("videoid")
-//        video_view.setMediaController(media_controller)
-//        video_view.setVideoURI(Uri.parse(videourl))
-//        video_view.start()
-//            video_view.setMediaController(media_controller)
-        val mediaController = MediaController(this)
+        try{
+            val mediaController = MediaController(this)
             video_view.setVideoURI(Uri.parse(videourl))
-        mediaController.setAnchorView(video_view)
-        video_view.setMediaController(mediaController)
-        video_view.start()
+            mediaController.setAnchorView(video_view)
+            video_view.setMediaController(mediaController)
+            video_view.start()
+        }catch (e:NullPointerException){
+            ToastMainError("Something went wrong")
+        }catch (e:IllegalArgumentException){
+            ToastMainError("Something went wrong")
+        }catch (e:Exception){
+            ToastMainError("Something went wrong")
+        }
         whatsapp.setOnClickListener {
             if (appInstalledOrNot("com.whatsapp")) {
 
@@ -103,20 +107,20 @@ class WhatsappView : AppCompatActivity() {
     }
 
     fun share_video(filepath: String, packeg: String) {
-        var string_path = Uri.fromFile(File(filepath))
-        val sharingIntent = Intent(Intent.ACTION_SEND)
-        sharingIntent.type = "video/*"
-        sharingIntent.`package` = packeg
-        sharingIntent.putExtra(Intent.EXTRA_STREAM, string_path)
+            try {
+                var string_path = Uri.parse(filepath)
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "video/*"
+            sharingIntent.`package` = packeg
+            sharingIntent.putExtra(Intent.EXTRA_STREAM, string_path)
 
-        try {
-            startActivity(sharingIntent)
-        } catch (e: android.content.ActivityNotFoundException) {
+           startActivity(sharingIntent)
+            } catch (e: android.content.ActivityNotFoundException) {
+                ToastInstallApp()
+            }catch (e:Exception){
+                ToastMainError(" Your Device Not give permission to Get Files")
+            }
 
-            ToastInstallApp()
-
-
-        }
     }
 
     fun appInstalledOrNot(uri: String): Boolean {
@@ -132,11 +136,17 @@ class WhatsappView : AppCompatActivity() {
 
     fun mainshare(filename: String) {
 
-        var string_path = Uri.parse(filename)
-        val intent = Intent(android.content.Intent.ACTION_SEND)
-        intent.type = "video/*"
-        intent.putExtra(Intent.EXTRA_STREAM, string_path)
-        startActivity(Intent.createChooser(intent, "Share via"))
+            try {
+                var string_path = Uri.parse(filename)
+                val intent = Intent(android.content.Intent.ACTION_SEND)
+                intent.type = "video/*"
+                intent.putExtra(Intent.EXTRA_STREAM, string_path)
+                startActivity(Intent.createChooser(intent, "Share via"))
+            } catch (e: android.content.ActivityNotFoundException) {
+                ToastInstallApp()
+            }catch (e: Exception){
+                ToastMainError(" Your Device Not give permission to Get Files")
+            }
     }
 
     override fun onBackPressed() {
@@ -147,6 +157,9 @@ class WhatsappView : AppCompatActivity() {
 
     fun ToastInstallApp() {
 
-        SuperActivityToast.create(this).setText("First Install App...").setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_LOLLIPOP).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show();
+        SuperActivityToast.create(this@WhatsappView).setText("First Install App...").setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_LOLLIPOP).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show()
     }
+    fun ToastMainError(Str :String){
+        SuperActivityToast.create(this@WhatsappView).setText(Str).setDuration(Style.DURATION_MEDIUM).setFrame(Style.FRAME_KITKAT).setColor(PaletteUtils.getSolidColor(PaletteUtils.MATERIAL_RED)).setAnimations(Style.ANIMATIONS_POP).show()
+        }
 }

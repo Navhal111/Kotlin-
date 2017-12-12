@@ -6,8 +6,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
-    tools:context="pistalix.gujaratibalgeetvideo.gujaratirhymes.Splash"
+    android:background="@drawable/whatsappvideos_bg"
+    tools:context="pistalix.romanticvideostatus.romanticvideosong.Splash"
     android:gravity="center">
 
     <ImageView
@@ -16,6 +16,7 @@
         android:layout_height="100dp"
         android:src="@drawable/logo"
         />
+
 
 
 </LinearLayout>

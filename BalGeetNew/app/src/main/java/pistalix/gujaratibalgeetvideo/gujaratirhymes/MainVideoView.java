@@ -672,16 +672,14 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
         DownloadManager manager = (DownloadManager)getApplication(). getSystemService(Context.DOWNLOAD_SERVICE);
 
         m_id= manager.enqueue(request);
-        DownloadManager.Query query = new DownloadManager.Query();
-        query.setFilterByStatus(DownloadManager.STATUS_FAILED | DownloadManager.STATUS_PAUSED |  DownloadManager.STATUS_SUCCESSFUL | DownloadManager.STATUS_RUNNING | DownloadManager.STATUS_PENDING);
-        Cursor c;
-        if(query==null){
-            return false;
-        }
+
         try{
             while (Downloding){
+                DownloadManager.Query query = new DownloadManager.Query();
+                query.setFilterByStatus(DownloadManager.STATUS_FAILED | DownloadManager.STATUS_PAUSED |  DownloadManager.STATUS_SUCCESSFUL | DownloadManager.STATUS_RUNNING | DownloadManager.STATUS_PENDING);
+                Cursor c;
                 c=manager.query(query);
-                if(c.moveToNext()) {
+                if(c.moveToFirst()) {
                     int bytes_downloaded = c.getInt(c
                             .getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));
                     int bytes_total = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
@@ -700,7 +698,6 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
                         filename =c.getString(c.getColumnIndex("local_uri"));
                         flagDownload =1;
                         Downloding = false;
-                        break;
                     }
                     if (status==DownloadManager.STATUS_FAILED) {
                         this.runOnUiThread(new Runnable() {
@@ -711,7 +708,6 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
                         });
 
                         Downloding = false;
-                        break;
                     }
                     if(status == DownloadManager.STATUS_RUNNING){
                         final int finalPersantage = persantage;
@@ -724,13 +720,14 @@ public class MainVideoView extends YouTubeBaseActivity implements YouTubePlayer.
 
                     }
                 }
-
+                c.close();
             }
+
         }catch (IllegalArgumentException e){
             ToastMsgFail("Problem On download, Try Again After One Minute");
         }catch (NullPointerException e){
             ToastMsgFail("Problem On download, Try Again After One Minute");
-        }catch (Exception e){
+        }catch (Exception e) {
             ToastMsgFail("Problem On download, Try Again After One Minute");
         }
 

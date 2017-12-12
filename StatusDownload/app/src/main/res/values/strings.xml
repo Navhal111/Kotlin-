@@ -2,6 +2,8 @@
     <string name="app_name">Status Saver</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="applist">https://infinitegeek.gitlab.io/appVersion/applist.json</string>
     <string name="interstial_ads">ca-app-pub-9611503142284796/8104327403</string>
     <string name="banner_ads">ca-app-pub-9611503142284796/7557532491</string>
 </resources>

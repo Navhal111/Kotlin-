@@ -71,9 +71,7 @@ class DownloadBlankFragment : Fragment() {
                     intent.putExtra("videoid", MainFiles[position].toString())
                     intent.putExtra("position",position)
                     startActivity(intent)
-//                    ToastInstallApp("Select One")
-//                    Multiselect(position)
-//                    refressAdapter()
+
                 }
 
 
