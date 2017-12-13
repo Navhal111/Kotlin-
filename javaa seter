@@ -315,3 +315,16 @@ public class SheetGoogle extends Activity
             }
         }
     }
+
+    private val btnListener = View.OnClickListener { v ->
+        when (v.id) {
+            R.id.categary -> {
+                val intent = Intent(this@ListAll, WebView::class.java)
+                startActivity(intent)
+            }
+            R.id.categary1 ->{
+
+            }
+
+        }
+    }
