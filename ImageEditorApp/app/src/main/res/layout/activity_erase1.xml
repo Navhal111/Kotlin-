@@ -1,0 +1,402 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tbg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/ll_Header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_bg"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/value_5"
+            android:paddingTop="@dimen/value_5"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_Back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/value_5"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_Undo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="@dimen/text_10"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/undo" />
+
+                <ImageView
+                    android:id="@+id/iv_Redo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="@dimen/text_10"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/redo" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_save"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/value_5"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_check" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <RelativeLayout
+                    android:id="@+id/main_rel_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <RelativeLayout
+                        android:id="@+id/main_rel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:gravity="center" />
+                </RelativeLayout>
+
+                <FrameLayout
+                    android:id="@+id/bootmlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom">
+
+                    <LinearLayout
+                        android:id="@+id/lay_offset_seek"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/custom_bg"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/value_3"
+                        android:paddingTop="@dimen/value_5"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txt_offset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:shadowColor="#000"
+                                android:shadowDx="1.0"
+                                android:shadowDy="1.0"
+                                android:shadowRadius="1.0"
+                                android:text="@string/offset"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/value_12"
+                                android:textStyle="bold"
+                                android:typeface="monospace" />
+
+                            <SeekBar
+                                android:id="@+id/offset_seekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_toRightOf="@+id/txt_offset"
+                                android:max="600"
+                                android:progressTint="@color/white"
+                                android:thumb="@drawable/thumbsize" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/value_5">
+
+                            <TextView
+                                android:id="@+id/txt_radius"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:shadowColor="#000"
+                                android:shadowDx="1.0"
+                                android:shadowDy="1.0"
+                                android:shadowRadius="1.0"
+                                android:text="@string/radius"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:typeface="monospace" />
+
+                            <SeekBar
+                                android:id="@+id/radius_seekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_toRightOf="@+id/txt_radius"
+                                android:max="40"
+                                android:progressTint="@color/white"
+                                android:thumb="@drawable/thumbsize" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/lay_threshold_seek"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@drawable/custom_bg"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/value_5"
+                        android:paddingTop="@dimen/value_5"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/value_5">
+
+                            <TextView
+                                android:id="@+id/txt_offset1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="5dp"
+                                android:shadowColor="#000"
+                                android:shadowDx="1.0"
+                                android:shadowDy="1.0"
+                                android:shadowRadius="1.0"
+                                android:text="@string/offset"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:typeface="monospace" />
+
+                            <SeekBar
+                                android:id="@+id/offset_seekbar1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="25dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_toRightOf="@+id/txt_offset1"
+                                android:max="600"
+                                android:progressTint="@color/white"
+                                android:thumb="@drawable/thumbsize" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txt_threshold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:shadowColor="#000"
+                                android:shadowDx="1.0"
+                                android:shadowDy="1.0"
+                                android:shadowRadius="1.0"
+                                android:text="@string/threshold"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                android:typeface="monospace" />
+
+                            <SeekBar
+                                android:id="@+id/threshold_seekbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_toRightOf="@+id/txt_threshold"
+                                android:max="50"
+                                android:progressTint="@color/white"
+                                android:thumb="@drawable/thumbsize" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bottom_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/value_5">
+
+            <LinearLayout
+                android:id="@+id/iv_Manual"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_manual"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/eraser" />
+
+                <TextView
+                    android:id="@+id/tt_manual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="ERASE"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/iv_Auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_auto"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/ic_brush"
+                    android:typeface="monospace" />
+
+                <TextView
+                    android:id="@+id/ttauto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AUTO ERASE"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/iv_Restore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_restore"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/ic_restore" />
+
+                <TextView
+                    android:id="@+id/ttrestore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RESTORE"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/iv_Zoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/image_zoom"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:padding="@dimen/value_3"
+                    android:src="@drawable/ic_zoom" />
+
+                <TextView
+                    android:id="@+id/ttzoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ZOOM"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:typeface="monospace" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/value_2"
+        card_view:cardCornerRadius="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/value_5"
+            android:layout_marginRight="@dimen/value_5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/value_5"
+            android:paddingTop="@dimen/value_5">
+
+            <FrameLayout
+                android:layout_width="@dimen/value_80"
+                android:layout_height="@dimen/value_80"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/imglogo"
+                    android:layout_width="@dimen/value_80"
+                    android:layout_height="@dimen/value_80"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_launcher" />
+
+                <ImageView
+                    android:layout_width="@dimen/value_80"
+                    android:layout_height="@dimen/value_80"
+                    android:src="@drawable/tag" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@android:color/black"
+                android:textSize="12dp" />
+
+
+            <!--<TextView-->
+            <!--android:layout_width="@dimen/value_80"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|center"-->
+            <!--android:layout_marginLeft="@dimen/value_10"-->
+            <!--android:layout_marginRight="@dimen/value_10"-->
+            <!--android:background="@drawable/button_round_rect"-->
+            <!--android:ellipsize="marquee"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingBottom="@dimen/value_1"-->
+            <!--android:paddingLeft="@dimen/value_5"-->
+            <!--android:paddingRight="@dimen/value_5"-->
+            <!--android:paddingTop="@dimen/value_1"-->
+            <!--android:singleLine="true"-->
+            <!--android:text="INSTALL"-->
+            <!--android:textColor="@android:color/white"-->
+            <!--android:textSize="@dimen/text_9" />-->
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

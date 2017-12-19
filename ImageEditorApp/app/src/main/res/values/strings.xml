@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ImageEditorApp</string>
+    <string name="speech_prompt">speech here</string>
+    <string name="speech_not_supported">your voise is not recognize</string>
+    <string name="processing">Processing</string>
+    <string name="warn_draw_path">Please Draw a closed path!!!</string>
+    <string name="save_image_">Creating image..</string>
+    <string name="offset">Offset</string>
+    <string name="radius">Redius</string>
+    <string name="threshold">Threshold</string>
+    <string name="undoing">Undoing</string>
+    <string name="redoing">Redoing</string>
+    <!--<string name="Ad_Mob_Nativelarge">ca-app-pub-3dfs77258514</string>-->
+    <!--<string name="Ad_mob_nativesmall">ca-app-pub-39sdf4/2793859312</string>-->
+    <string name="bannerads">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_full_screen">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="virsion_url">https://infinitegeek.gitlab.io/appVersion/check.json</string>
+    <string name="applist">https://infinitegeek.gitlab.io/appVersion/applist.json</string>
+    <string name="press_back_again_to_exit">Press back again to exit</string>
+</resources>
