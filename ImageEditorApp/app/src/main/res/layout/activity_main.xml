@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pistalix.crismasImage.editor.MainActivity"
+    tools:context="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.MainActivity"
     android:orientation="vertical">
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -23,9 +23,9 @@
         android:orientation="vertical">
         <Button
             android:id="@+id/imageselect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selecte IMage" />
+            android:layout_width="150dp"
+            android:layout_height="70dp"
+            android:background="@drawable/start_btn" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

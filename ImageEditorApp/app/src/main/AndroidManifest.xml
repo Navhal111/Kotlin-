@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="pistalix.crismasImage.editor">
+    package="pistalix.ChristmasPhotoStickerFrames.PhotoEditor">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,12 +13,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Splash" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,42 +26,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.Image_Edit_Screen"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.Image_Edit_Screen"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ShareActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.ShareActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.CropActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.CropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.FreeCropActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.FreeCropActivity"
             android:screenOrientation="portrait" />
+        <!--<activity-->
+            <!--android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.My_Creation_Activity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
-            android:name=".Activity.My_Creation_Activity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.textdemo.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".textdemo.MainActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.WebActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.WebActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.ImageEditActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Activity.ImageEditActivity"
+            android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.EraseActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.EraseActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BackButton" />
-        <activity android:name=".Activity.MainActivity"/>
+        <activity android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.BackButton" />
+        <activity android:name="pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity.MainActivity"/>
     </application>
 
 </manifest>

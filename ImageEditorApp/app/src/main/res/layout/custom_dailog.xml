@@ -2,8 +2,6 @@
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:layout_gravity="center"
-    android:background="#00555555"
-    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout

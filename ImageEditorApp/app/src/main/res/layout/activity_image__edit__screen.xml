@@ -91,7 +91,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white">
-
                     <ImageView
                         android:id="@+id/image_view"
                         android:layout_width="match_parent"
@@ -611,7 +610,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/sticker1" />
+                    android:src="@drawable/caps" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -635,13 +634,13 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:src="@drawable/addtext1" />
+                    android:src="@drawable/beard" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="TEXT"
+                    android:text="BEARD"
                     android:textColor="@color/colorWhite"
                     android:textSize="10sp" />
 

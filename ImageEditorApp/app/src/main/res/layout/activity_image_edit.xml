@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:src="@drawable/nt10" />
+            android:src="@drawable/nt4" />
 
         <ImageView
             android:id="@+id/imagef1_1"
@@ -275,7 +275,75 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:onClick="SetBackground"
                         android:src="@drawable/demo_color" />
+                    <ImageView
+                        android:id="@+id/backgrond21"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t1" />
 
+                    <ImageView
+                        android:id="@+id/backgrond22"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t2" />
+
+                    <ImageView
+                        android:id="@+id/backgrond23"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t3" />
+
+                    <ImageView
+                        android:id="@+id/backgrond24"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t4" />
+
+                    <ImageView
+                        android:id="@+id/backgrond25"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t5" />
+
+                    <ImageView
+                        android:id="@+id/backgrond26"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t6" />
+
+                    <ImageView
+                        android:id="@+id/backgrond27"
+                        android:layout_width="@dimen/value_80"
+                        android:layout_height="70dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:onClick="SetBackground"
+                        android:padding="2dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/nt_t7" />
                     <ImageView
                         android:id="@+id/backgrond1"
                         android:layout_width="@dimen/value_80"
@@ -382,195 +450,6 @@
                         android:src="@drawable/gt15" />
 
 
-                    <ImageView
-                        android:id="@+id/backgrond21"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t1" />
-
-                    <ImageView
-                        android:id="@+id/backgrond22"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t2" />
-
-                    <ImageView
-                        android:id="@+id/backgrond23"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t3" />
-
-                    <ImageView
-                        android:id="@+id/backgrond24"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t4" />
-
-                    <ImageView
-                        android:id="@+id/backgrond25"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t5" />
-
-                    <ImageView
-                        android:id="@+id/backgrond26"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t6" />
-
-                    <ImageView
-                        android:id="@+id/backgrond27"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t7" />
-
-                    <ImageView
-                        android:id="@+id/backgrond28"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t8" />
-
-                    <ImageView
-                        android:id="@+id/backgrond29"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t9" />
-
-                    <ImageView
-                        android:id="@+id/backgrond30"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t10" />
-
-                    <ImageView
-                        android:id="@+id/backgrond31"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t11" />
-
-                    <ImageView
-                        android:id="@+id/backgrond32"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t12" />
-
-                    <ImageView
-                        android:id="@+id/backgrond33"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t13" />
-
-                    <ImageView
-                        android:id="@+id/backgrond34"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t14" />
-
-                    <ImageView
-                        android:id="@+id/backgrond35"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t15" />
-
-                    <ImageView
-                        android:id="@+id/backgrond36"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t16" />
-
-                    <ImageView
-                        android:id="@+id/backgrond37"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t17" />
-
-                    <ImageView
-                        android:id="@+id/backgrond38"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t18" />
-
-                    <ImageView
-                        android:id="@+id/backgrond39"
-                        android:layout_width="@dimen/value_80"
-                        android:layout_height="70dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:onClick="SetBackground"
-                        android:padding="2dp"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/nt_t19" />
 
 
                 </LinearLayout>
@@ -584,28 +463,28 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
-        android:visibility="visible">
+        >
 
-        <RadioGroup
-            android:id="@+id/myradiogrup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/colorPrimary">
+        <!--<RadioGroup-->
+            <!--android:id="@+id/myradiogrup"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:background="@color/colorPrimary">-->
 
-            <RadioButton
-                android:id="@+id/photoradio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="photo"
-                android:buttonTint="@color/white"
-                android:textAllCaps="true"
-                android:textColor="@color/white" />
+            <!--<RadioButton-->
+                <!--android:id="@+id/photoradio"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="Move "-->
+                <!--android:buttonTint="@color/white"-->
+                <!--android:textAllCaps="true"-->
+                <!--android:textColor="@color/white" />-->
 
-        </RadioGroup>
+        <!--</RadioGroup>-->
 
     </RelativeLayout>
 
