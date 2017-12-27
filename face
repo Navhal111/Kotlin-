@@ -1,0 +1,421 @@
+package pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Activity;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.util.SparseArray;
+import android.view.Display;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.face.Face;
+import com.google.android.gms.vision.face.FaceDetector;
+import com.google.android.gms.vision.face.Landmark;
+import com.isseiaoki.simplecropview.CropImageView;
+import com.tzutalin.dlib.Constants;
+import com.tzutalin.dlib.FaceDet;
+import com.tzutalin.dlib.VisionDetRet;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import pistalix.ChristmasPhotoStickerFrames.PhotoEditor.R;
+import pistalix.ChristmasPhotoStickerFrames.PhotoEditor.StickerImageView;
+import pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Subfile.Glob;
+import pistalix.ChristmasPhotoStickerFrames.PhotoEditor.Subfile.ImageUtils;
+import pistalix.ChristmasPhotoStickerFrames.PhotoEditor.textdemo.StickerView;
+
+import static it.sephiroth.android.library.widget.AdapterView.LOG_TAG;
+
+
+public class CropActivity extends AppCompatActivity {
+//    public static FaceProcessor mFaceProcessor = null;
+
+    private CropImageView mCropView;
+    private TextView tv_free, tv_one11, tv_fitImage, tv_34, tv_43, tv_916, tv_169, tv_custom, tv_circle, tv_squrecircle;
+    private ImageView iv_free, iv_one11, iv_fitImage, iv_34, iv_43, iv_916, iv_169, iv_custom, iv_circle, iv_squrecircle;
+    private Uri selectedImage;
+    private Bitmap OriginalImages;
+    private static final float ID_Y_OFFSET = 50.0f;
+    private static final float ID_X_OFFSET = -50.0f;
+    FaceDetector detector;
+    FrameLayout mainfream;
+    Bitmap editedBitmap;
+    private Uri savedImageUri;
+    private ProgressDialog progressDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_crop);
+        bindViews();
+//        mCropView.setCropMode(CropImageView.CropMode.SQUARE);
+        selectedImage = Uri.parse(getIntent().getStringExtra("image_Uri"));
+        InputStream image_stream = null;
+        try {
+            image_stream = getContentResolver().openInputStream(this.selectedImage);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        detector = new FaceDetector.Builder(getApplicationContext())
+                .setTrackingEnabled(true)
+                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
+                .build();
+        OriginalImages = BitmapFactory.decodeStream(image_stream);
+        Glob.Mainbitmap = OriginalImages;
+        editedBitmap = Bitmap.createBitmap(OriginalImages.getWidth(), OriginalImages
+                .getHeight(), OriginalImages.getConfig());
+        try {
+            scanFaces();
+        } catch (Exception e) {
+            Toast.makeText(this, "Failed to load Image", Toast.LENGTH_SHORT).show();
+            Log.e(LOG_TAG, e.toString());
+        }
+//        float scale = getResources().getDisplayMetrics().density;
+//        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+//        paint.setColor(Color.rgb(255, 61, 61));
+//        paint.setTextSize((int) (14 * scale));
+//        paint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
+//        paint.setStyle(Paint.Style.STROKE);
+//        paint.setStrokeWidth(3f);
+//        FaceDet faceDet = new FaceDet(Constants.getFaceShapeModelPath());
+//        Bitmap bitmap = null;
+//        try {
+//            bitmap = decodeBitmapUri(this, selectedImage);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        editedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap
+//                .getHeight(), editedBitmap.getConfig());
+//        Canvas canvas = new Canvas(editedBitmap);
+//        canvas.drawBitmap(bitmap, 0, 0, paint);
+//        List<VisionDetRet> results = faceDet.detect(editedBitmap);
+//        for (final VisionDetRet ret : results) {
+//            String label = ret.getLabel();
+//            int rectLeft = ret.getLeft();
+//            int rectTop = ret.getTop();
+//            int rectRight = ret.getRight();
+//            int rectBottom = ret.getBottom();
+//            // Get 68 landmark points
+//            ArrayList<Point> landmarks = ret.getFaceLandmarks();
+//            for (Point point : landmarks) {
+//                int pointX = point.x;
+//                int pointY = point.y;
+//                canvas.drawCircle(pointX, pointY, 2, paint);
+//            }
+//            mCropView.setImageBitmap(OriginalImages);
+//            Bitmap main = BitmapFactory.decodeResource(getResources(),R.drawable.beard42);
+//                Bitmap stickBit = Bitmap.createBitmap(main, rectLeft, rectTop, rectRight -rectLeft, rectBottom - rectTop);
+//                StickerImageView MainTuchimage = new StickerImageView(CropActivity.this);
+////                MainTuchimage.setImageBitmap(stickBit);
+//                MainTuchimage.setImageResource(R.drawable.beard42);
+////                MainTuchimage.setY(rectTop);
+////                MainTuchimage.setX(rectLeft);
+//                MainTuchimage.getLayoutParams().height= rectBottom-rectTop;
+//                MainTuchimage.getLayoutParams().width= rectRight-rectLeft;
+//                MainTuchimage.requestLayout();
+//                MainTuchimage.postInvalidate();
+//                mainfream.addView(MainTuchimage);
+//        }
+
+
+    }
+
+    private void scanFaces() throws Exception {
+        Bitmap bitmap = decodeBitmapUri(this, selectedImage);
+//        mainfream.setDrawingCacheEnabled(true);
+//        mainfream.buildDrawingCache();
+//        Bitmap bitmap = Bitmap.createBitmap(mainfream.getWidth(), mainfream.getHeight(),
+//                Bitmap.Config.RGB_565);
+        if (detector.isOperational() && bitmap != null) {
+            editedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap
+                    .getHeight(), bitmap.getConfig());
+            Glob.bitmap=editedBitmap;
+            float scale = getResources().getDisplayMetrics().density;
+            Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            paint.setColor(Color.rgb(255, 61, 61));
+            paint.setTextSize((int) (14 * scale));
+            paint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(3f);
+            Canvas canvas = new Canvas(editedBitmap);
+            canvas.drawBitmap(bitmap, 0, 0, paint);
+            Frame frame = new Frame.Builder().setBitmap(editedBitmap).build();
+            SparseArray<Face> faces = detector.detect(frame);
+            Glob.face = faces;
+            for (int index = 0; index < faces.size(); ++index) {
+                Face face = faces.valueAt(index);
+                canvas.drawRect( face.getPosition().x,face.getPosition().y,face.getPosition().x + face.getWidth(),
+                        face.getPosition().y + face.getHeight(), paint);
+//                scanResults.setText(scanResults.getText() + "Face " + (index + 1) + "\n");
+//                scanResults.setText(scanResults.getText() + "probability:" + "\n");
+//                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsSmilingProbability()) + "\n");
+//                scanResults.setText(scanResults.getText() + "Left Eye : " + "\n");
+//                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsLeftEyeOpenProbability()) + "\n");
+//                scanResults.setText(scanResults.getText() + "Right : " + "\n");
+//                scanResults.setText(scanResults.getText() + String.valueOf(face.getIsRightEyeOpenProbability()) + "\n");
+//                scanResults.setText(scanResults.getText() + "---------" + "\n");
+                int i=0;
+                for (Landmark landmark : face.getLandmarks()) {
+                    int cx = (int) (landmark.getPosition().x);
+                    int cy = (int) (landmark.getPosition().y);
+                    canvas.drawCircle(cx, cy, 2, paint);
+                    if(i==3){
+                        break;
+                    }
+                    i++;
+                }
+            }
+
+            if (faces.size() == 0) {
+                Toast.makeText(this, "Scan Failed: No face Detect In your image", Toast.LENGTH_SHORT).show();
+            } else {
+                Face face  = faces.valueAt(0);
+                float x = face.getPosition().x ;
+                float y = face.getPosition().y ;
+                float xOffset = face.getWidth();
+                float yOffset = face.getHeight();
+                float left = x-xOffset;
+                float top = y-yOffset;
+                float right = x + xOffset;
+                float bottom = y + yOffset;
+                List<Landmark> landmasrk  = face.getLandmarks();
+//                FaceDet faceDet = new FaceDet(Constants.getFaceShapeModelPath())
+                mCropView.setImageBitmap(editedBitmap);
+                StickerView CapView = new StickerView(CropActivity.this);
+                StickerImageView MainTuchimage = new StickerImageView(CropActivity.this);
+//                MainTuchimage.setImageBitmap(stickBit);
+//                MainTuchimage.setImageResource();
+                MainTuchimage.setImageResource(R.drawable.beard42);
+                MainTuchimage.setY(top);
+                MainTuchimage.setX(left);
+//                MainTuchimage.getLayoutParams().height= (int)(face.getPosition().y + face.getHeight()-face.getPosition().y);
+//                MainTuchimage.getLayoutParams().width= (int)(face.getPosition().x + face.getWidth()-face.getPosition().x);
+                MainTuchimage.requestLayout();
+                MainTuchimage.postInvalidate();
+                mainfream.addView(MainTuchimage);
+                Toast.makeText(this, "Set the image", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Could not set up the detector!", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private Bitmap decodeBitmapUri(Context ctx, Uri uri) throws FileNotFoundException {
+        int targetW = 600;
+        int targetH = 600;
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(ctx.getContentResolver().openInputStream(uri), null, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+
+        return BitmapFactory.decodeStream(ctx.getContentResolver()
+                .openInputStream(uri), null, bmOptions);
+    }
+    private void bindViews() {
+        mCropView = (CropImageView) findViewById(R.id.cropImageView);
+//        mainfream = (FrameLayout) findViewById(R.id.main_frame);
+//        mCropView = (ImageView) findViewById(R.id.cropImageView);
+        findViewById(R.id.buttonDone).setOnClickListener(btnListener);
+        findViewById(R.id.Iv_back_crop).setOnClickListener(btnListener);
+        findViewById(R.id.buttonRotateLeft).setOnClickListener(btnListener);
+        findViewById(R.id.buttonRotateRight).setOnClickListener(btnListener);
+        findViewById(R.id.buttonDone).setOnClickListener(btnListener);
+        findViewById(R.id.buttonFitImage).setOnClickListener(btnListener);
+        findViewById(R.id.button1_1).setOnClickListener(btnListener);
+        findViewById(R.id.button3_4).setOnClickListener(btnListener);
+        findViewById(R.id.button4_3).setOnClickListener(btnListener);
+        findViewById(R.id.button9_16).setOnClickListener(btnListener);
+        findViewById(R.id.button16_9).setOnClickListener(btnListener);
+        findViewById(R.id.buttonFree).setOnClickListener(btnListener);
+        findViewById(R.id.buttonRotateLeft).setOnClickListener(btnListener);
+        findViewById(R.id.buttonRotateRight).setOnClickListener(btnListener);
+        findViewById(R.id.buttonCustom).setOnClickListener(btnListener);
+        findViewById(R.id.buttonCircle).setOnClickListener(btnListener);
+        findViewById(R.id.buttonShowCircleButCropAsSquare).setOnClickListener(btnListener);
+
+
+        tv_free = (TextView) findViewById(R.id.tv_free);
+        iv_free = (ImageView) findViewById(R.id.iv_free);
+        tv_one11 = (TextView) findViewById(R.id.tv_one11);
+        iv_one11 = (ImageView) findViewById(R.id.iv_one11);
+        tv_fitImage = (TextView) findViewById(R.id.tv_fitImage);
+        iv_fitImage = (ImageView) findViewById(R.id.iv_fitImage);
+        tv_34 = (TextView) findViewById(R.id.tv_34);
+        iv_34 = (ImageView) findViewById(R.id.iv_34);
+        tv_43 = (TextView) findViewById(R.id.tv_43);
+        iv_43 = (ImageView) findViewById(R.id.iv_43);
+        tv_916 = (TextView) findViewById(R.id.tv_916);
+        iv_916 = (ImageView) findViewById(R.id.iv_916);
+        tv_169 = (TextView) findViewById(R.id.tv_169);
+        iv_169 = (ImageView) findViewById(R.id.iv_169);
+        tv_custom = (TextView) findViewById(R.id.tv_custom);
+        iv_custom = (ImageView) findViewById(R.id.iv_custom);
+        tv_circle = (TextView) findViewById(R.id.tv_circle);
+        iv_circle = (ImageView) findViewById(R.id.iv_circle);
+        tv_squrecircle = (TextView) findViewById(R.id.tv_squrecircle);
+        iv_squrecircle = (ImageView) findViewById(R.id.iv_squrecircle);
+
+    }
+
+    private void Callallothers() {
+        iv_free.setColorFilter(getResources().getColor(R.color.white));
+        iv_one11.setColorFilter(getResources().getColor(R.color.white));
+        iv_fitImage.setColorFilter(getResources().getColor(R.color.white));
+        iv_34.setColorFilter(getResources().getColor(R.color.white));
+        iv_43.setColorFilter(getResources().getColor(R.color.white));
+        iv_916.setColorFilter(getResources().getColor(R.color.white));
+        iv_169.setColorFilter(getResources().getColor(R.color.white));
+        iv_custom.setColorFilter(getResources().getColor(R.color.white));
+        iv_circle.setColorFilter(getResources().getColor(R.color.white));
+        iv_squrecircle.setColorFilter(getResources().getColor(R.color.white));
+        tv_free.setTextColor(getResources().getColor(R.color.white));
+        tv_one11.setTextColor(getResources().getColor(R.color.white));
+        tv_fitImage.setTextColor(getResources().getColor(R.color.white));
+        tv_43.setTextColor(getResources().getColor(R.color.white));
+        tv_34.setTextColor(getResources().getColor(R.color.white));
+        tv_custom.setTextColor(getResources().getColor(R.color.white));
+        tv_circle.setTextColor(getResources().getColor(R.color.white));
+        tv_squrecircle.setTextColor(getResources().getColor(R.color.white));
+        tv_916.setTextColor(getResources().getColor(R.color.white));
+        tv_169.setTextColor(getResources().getColor(R.color.white));
+    }
+
+    private final View.OnClickListener btnListener = new View.OnClickListener() {
+        public ProgressDialog progressDialog;
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.buttonDone:
+                    Callallothers();
+                    saveImage();
+                case R.id.Iv_back_crop:
+                    Callallothers();
+                    finish();
+                    break;
+                case R.id.buttonRotateLeft:
+                    Callallothers();
+//                    mCropView.rotateImage(CropImageView.RotateDegrees.ROTATE_M90D);
+                    break;
+                case R.id.buttonRotateRight:
+                    Callallothers();
+//                    mCropView.rotateImage(CropImageView.RotateDegrees.ROTATE_90D);
+                    break;
+                case R.id.buttonFitImage:
+                    Callallothers();
+                    iv_fitImage.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_fitImage.setTextColor(getResources().getColor(R.color.custom_main));
+
+//                    mCropView.setCropMode(CropImageView.CropMode.FIT_IMAGE);
+                    break;
+                case R.id.button1_1:
+                    Callallothers();
+                    iv_one11.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_one11.setTextColor(getResources().getColor(R.color.custom_main));
+
+//                    mCropView.setCropMode(CropImageView.CropMode.SQUARE);
+                    break;
+                case R.id.button3_4:
+                    Callallothers();
+                    iv_34.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_34.setTextColor(getResources().getColor(R.color.custom_main));
+
+//                    mCropView.setCropMode(CropImageView.CropMode.RATIO_3_4);
+                    break;
+                case R.id.button4_3:
+                    Callallothers();
+                    iv_43.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_43.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.RATIO_4_3);
+                    break;
+                case R.id.button9_16:
+                    Callallothers();
+                    iv_916.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_916.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.RATIO_9_16);
+                    break;
+                case R.id.button16_9:
+                    Callallothers();
+                    iv_169.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_169.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.RATIO_16_9);
+                    break;
+                case R.id.buttonCustom:
+                    Callallothers();
+                    iv_custom.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_custom.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCustomRatio(7, 5);
+                    break;
+                case R.id.buttonFree:
+                    Callallothers();
+                    iv_free.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_free.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.FREE);
+                    break;
+                case R.id.buttonCircle:
+                    Callallothers();
+                    iv_circle.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_circle.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.CIRCLE);
+                    break;
+                case R.id.buttonShowCircleButCropAsSquare:
+                    Callallothers();
+                    iv_squrecircle.setColorFilter(getResources().getColor(R.color.custom_main));
+                    tv_squrecircle.setTextColor(getResources().getColor(R.color.custom_main));
+//                    mCropView.setCropMode(CropImageView.CropMode.CIRCLE_SQUARE);
+                    break;
+            }
+        }
+    };
+
+    public void saveImage() {
+//        Glob.bitmap = mCropView.getCroppedBitmap();
+        Display display = getWindowManager().getDefaultDisplay();
+        int w = display.getWidth();
+        int h = display.getHeight();
+        if (Glob.bitmap.getHeight() > Glob.bitmap.getWidth()) {
+            if (Glob.bitmap.getHeight() > h) {
+                Glob.bitmap = Bitmap.createScaledBitmap(Glob.bitmap, (Glob.bitmap.getWidth() * h) / Glob.bitmap.getHeight(), h, false);
+            }
+            if (Glob.bitmap.getWidth() > w) {
+                Glob.bitmap = Bitmap.createScaledBitmap(Glob.bitmap, w, (Glob.bitmap.getHeight() * w) / Glob.bitmap.getWidth(), false);
+            }
+        } else {
+            if (Glob.bitmap.getWidth() > w) {
+                Glob.bitmap = Bitmap.createScaledBitmap(Glob.bitmap, w, (Glob.bitmap.getHeight() * w) / Glob.bitmap.getWidth(), false);
+            }
+            if (Glob.bitmap.getHeight() > h) {
+                Glob.bitmap = Bitmap.createScaledBitmap(Glob.bitmap, (Glob.bitmap.getWidth() * h) / Glob.bitmap.getHeight(), h, false);
+            }
+        }
+
+        startActivity(new Intent(CropActivity.this, Image_Edit_Screen.class));
+
+
+    }
+
+
+}
+
