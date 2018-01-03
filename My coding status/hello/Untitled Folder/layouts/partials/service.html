@@ -1,0 +1,57 @@
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+         <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+                        <h1 class="title" style="color:#f9fcf6">
+                        <span class="letter" data-letter="S">Services</span></h1>
+                        <p style="color:#f9fcf6" >We Provied</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="portfolio">
+    <div class="container">
+        <div class="row">
+          <ul class="portfolio-filter text-center">
+            {{ $products := getJSON "/data/aboutus/ser.json" }}
+              <li><a class="btn btn-default active" href="#" data-filter="*">All</a></li>
+            {{ range $products }}
+              <li><a class="btn btn-default" href="#" data-filter=".{{ .key }}">{{ .list }}</a></li>
+            {{ end }}
+          </ul><!--/#portfolio-filter-->
+
+          <div class="portfolio-items">
+            {{ $subser:= getJSON "/data/aboutus/subser.json" }}
+            {{ range $subser }}
+              <div class="col-xs-6 col-sm-4 col-md-3 portfolio-item {{ .parent }} logos">
+                  <div class="portfolio-wrapper">
+                      <div class="portfolio-single">
+                          <div class="portfolio-thumb">
+                              <img src="/{{ .image }}" class="img-responsive" alt="">
+                          </div>
+                          <div class="portfolio-view">
+                              <ul class="nav nav-pills">
+                                  <li><a href=" "><i class="fa fa-link"></i></a></li>
+                                  <li><a href="/{{ .image }}" data-title="{{ .title }}" data-lightbox="example-set" ><i class="fa fa-eye"></i></a></li>
+                              </ul>
+
+                          </div>
+                      </div>
+                      <div class="portfolio-info ">
+                          <h2 style="font-weight: bold;">{{ .title }}</h2>
+                      </div>
+                  </div>
+              </div>
+              {{ end }}
+           </div>
+
+        </div>
+    </div>
+</section>
+<br>
+<br>

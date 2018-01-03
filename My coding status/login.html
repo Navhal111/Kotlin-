@@ -1,0 +1,11 @@
+<script src="https://cdn.auth0.com/js/lock/10.15/lock.min.js"></script>
+<script>
+  var lock = new Auth0Lock('xYbqBYbjcd2rS6o9Xb0HrLwQWHXu8jH1', 'abdul4343.eu.auth0.com', {
+    auth: {
+      audience: "https://abdul4343.eu.auth0.com/api/v2/",
+      redirectUrl: 'http://192.168.0.6:5000/callback',
+      responseType: 'code'
+    }
+  });
+</script>
+<button onclick="lock.show();">Login</button>

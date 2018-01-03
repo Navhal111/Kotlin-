@@ -1,0 +1,42 @@
+<section id="page-breadcrumb">
+     <div class="vertical-center sun">
+          <div class="container">
+             <div class="row">
+                 <div class="action">
+                     <div class="col-sm-12">
+                         <h1 class="title" style="color:#f9fcf6">
+                           <span class="letter" data-letter="P">Pricing Table</span></h1>
+                         <p style="color:#f9fcf6">configure your pricing table</p>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</section>
+
+<section class="container">
+    <div class="price-table">
+        <div class="row">
+          {{ $products := getJSON "/data/aboutus/table.json" }}
+          {{ range $products }}
+          <div class="col-sm-6 col-md-3">
+              <div class="single-price {{ .class }}">
+                  <div class="table-heading">
+                      <p class="plan-name">{{ .title }}</p>
+                      <p class="plan-price"><span class="dollar-sign">$</span><span class="price">29</span><span class="month">/ Month</span></p>
+                  </div>
+                  <ul>
+                      <li>Lorem ipsum dolor <span><i class="fa fa-check"></i></span></li>
+                      <li>Consectetur adipiscing <span><i class="fa fa-times"></i></span></li>
+                      <li>Nulla pellentesque <span><i class="fa fa-times"></i></span> </li>
+                      <li> Integer quis risus <span><i class="fa fa-check"></i></span></li>
+                      <li>Phasellus et metus <span><i class="fa fa-times"></i></span></li>
+                      <li>Duis nec massa inter <span><i class="fa fa-check"></i></span></li>
+                  </ul>
+                  <a href="#" class="btn btn-buynow">Buy Now</a>
+              </div>
+          </div>
+          {{ end }}
+        </div>
+    </div>
+</section>

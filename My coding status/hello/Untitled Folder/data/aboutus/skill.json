@@ -1,0 +1,18 @@
+[
+  {
+    "title":"HTML",
+    "per":"90"
+  },
+  {
+    "title":"PHP",
+    "per":"85"
+  },
+  {
+    "title":"Python",
+    "per":"70"
+  },
+  {
+    "title":"HUGO",
+    "per":"60"
+  }
+]

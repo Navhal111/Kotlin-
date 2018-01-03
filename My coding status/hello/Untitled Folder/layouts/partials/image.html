@@ -1,0 +1,28 @@
+
+<div class="container">
+    <div class="row">
+        <div class="main-slider">
+
+            <div class="slide-text logo">
+              {{ $products := getJSON "/data/header/header.json" }}
+                <h1 style="color:#f7f9fc">{{ $products.title }}</h1>
+                <p style="color:#f7f9fc">{{ $products.des }}</p>
+            </div>
+
+                <div class="slide-text">
+                  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <img src="{{ .Site.BaseURL }}images/mobile_logo.png" class="animated fadeInDown delay-02s logo " alt=" " style="width: 200px; margin:auto; bottom:1opx;" >
+                </div>
+
+                <!-- <img src="{{ .Site.BaseURL }}images/logo/logo-text.png" style="width: 200px; margin:auto;"  alt="PISTALIX_logo_text"> -->
+                <img src="{{ .Site.BaseURL }}images/home/slider/logo_down.png" class="slider-hill     full-logo delay-02s logo3" style="width: 190px;" alt="slider image" >
+                <img src="{{ .Site.BaseURL }}images/home/slider/logo_up.png" class=" slider-house  full-logo delay-04s logo1" style="width: 190px;" alt="slider image" >
+                <img src="{{ .Site.BaseURL }}images/home/slider/logo_left.png" class="slider-birds1   full-logo delay-06s logo4" style="width: 190px;" alt="slider image" >
+                <img src="{{ .Site.BaseURL }}images/home/slider/logo_right.png" class="slider-birds2   full-logo delay-08s logo2" style="width: 190px;" alt="slider image">
+
+</div>
+
+</div>
+
+    </div>
+    <div class="preloader"><i class="fa fa-sun-o fa-spin"></i></div>

@@ -1,0 +1,7 @@
+git branch
+git checkout -b "Branch_name"
+git status
+git add index1.php ve...
+git commit -m "commit message"
+git push origin branch_name
+

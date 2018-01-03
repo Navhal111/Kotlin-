@@ -1,0 +1,65 @@
+[
+{
+  "title":"Android",
+  "image":"images/services/android-robot-icon-222.png",
+  "parent":"Mobile"
+},{
+  "title":"React Native",
+  "image":"images/services/react-native-preview.png",
+  "parent":"Mobile"
+},
+{
+  "title":"Rasberry PI",
+  "image":"images/services/rasberrypi.png",
+  "parent":"Services"
+},
+{
+  "title":" ",
+  "image":"images/services/redux.png",
+  "parent":"Web"
+}
+,{
+  "title":" ",
+  "image":"images/services/amazon.png",
+  "parent":"Services"
+},
+{
+  "title":" ",
+  "image":"images/services/react.png",
+  "parent":"Web"
+},
+{
+  "title":" ",
+  "image":"images/services/hugo.png",
+  "parent":"Web"
+},
+{
+  "title":" ",
+  "image":"images/services/MySQL.png",
+  "parent":"Database"
+},{
+  "title":" ",
+  "image":"images/services/mongodb.jpg",
+  "parent":"Database"
+},
+{
+  "title":" ",
+  "image":"images/services/flask1.png",
+  "parent":"Database"
+},
+{
+  "title":" ",
+  "image":"images/services/Redis.png",
+  "parent":"Database"
+},
+{
+  "title":" ",
+  "image":"images/services/magento-logo.png",
+  "parent":"E-Commerce"
+},{
+  "title":" ",
+  "image":"images/services/Shopify_Logo.png",
+  "parent":"E-Commerce"
+}
+
+]

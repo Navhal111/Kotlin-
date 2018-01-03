@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ {{ partial "head.html" . }}
+  <body>
+    <header id="header">
+      {{partial "header.html" .}}
+    </header>
+
+    {{ if eq .Params.id "AboutUs"}}
+     {{partial "about.html" .}}
+    {{ end }}
+
+    {{ if eq .Params.id "Contact"}}
+     {{partial "contact.html" .}}
+    {{ end }}
+
+    {{ if eq .Params.id "Table"}}
+     {{partial "table.html" .}}
+    {{ end }}
+
+    {{ if eq .Params.id "Services"}}
+     {{partial "service.html" .}}
+    {{ end }}
+
+    {{ if eq .Params.id "TV"}}
+     {{partial "tv.html" .}}
+    {{ end }}
+
+    {{ if eq .Params.id "python"}}
+     {{ partial "python.html"}}
+    {{end }}
+
+    {{ if not .Params.id}}
+     {{"404.html"}}
+    {{ end }}
+    <footer id="footer">
+      {{partial "footer.html" .}}
+    </footer>
+
+      {{ partial "scripts.html" . }}
+  </body>
+</html>

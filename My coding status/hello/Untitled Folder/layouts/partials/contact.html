@@ -1,0 +1,41 @@
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+         <div class="container">
+            <div class="row">
+                <div class="action">
+                    <div class="col-sm-12">
+
+                       <a href="{{.Site.BaseURL}}contact">
+                        <h1 class="title" style="color:#f9fcf6;font-size: 40px;">
+                          <span class="letter" data-letter="C">Contact Us</span></h1>
+                        <p style="color:#f9fcf6" >Stay close</p>
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="map-section">
+    <div class="container">
+      <div class="row">
+
+        <div id="gmap"></div>
+        {{ $detailes := getJSON "/data/header/contact.json" }}
+        <div class="contact-info">
+            <h2>Contacts</h2>
+            <address>
+            E-mail: <a href="{{ $detailes.email }}">{{ $detailes.email }}</a> <br>
+            Phone: {{$detailes.contact}} <br>
+            Fax: {{$detailes.contact}} <br>
+            </address>
+
+            <h2>Address</h2>
+            <address>
+              {{ $detailes.add | safeHTML }}
+            </address>
+        </div>
+    </div>
+    </div>
+</section>

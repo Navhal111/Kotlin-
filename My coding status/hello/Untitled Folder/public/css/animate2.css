@@ -1,0 +1,725 @@
+.android
+{
+	position: absolute;
+	top:42%;
+	z-index: 1;
+	left: 50%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+}
+
+.amazon
+{
+	position: absolute;
+	top:20%;
+	z-index: 1;
+	left: 43%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+}
+.gst
+{
+	position: absolute;
+	top:37%;
+	z-index: 1;
+	left: 42%;
+	height: 60px;
+	width: 60px;
+	opacity: 1;
+}
+.vr
+{
+	position: absolute;
+	top:15%;
+	z-index: 1;
+	left: 50%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+}
+.ios
+{
+	position: absolute;
+	top:15%;
+	z-index: 1;
+	left: 60%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+}
+.web
+{
+	position: absolute;
+	top:47%;
+	z-index: 1;
+	left: 59%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+}
+.iot
+{
+	position: absolute;
+	top:28%;
+	z-index: 1;
+	left: 57%;
+	height: 55px;
+	width: 44px;
+	opacity: 1;
+}
+.ga
+{
+	position: absolute;
+	top:28%;
+	z-index: 1;
+	left: 50%;
+	height: 40px;
+	width: 40px;
+	opacity: 1;
+
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+/* Styles */
+	.android
+	{
+		top:21%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.amazon
+	{
+		top:10%;
+		left: 43%;
+		height: 15px;
+		width: 15px;
+	}
+	.vr
+	{
+		top:7.5%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.iot
+	{
+		top:14%;
+		left: 57%;
+		height: 15px;
+		width: 15px;
+	}
+	.ios
+	{
+		top:7.2%;
+		left: 60%;
+		height: 15px;
+		width: 15px;
+	}
+	.web
+	{
+		top:23.5%;
+		left: 59%;
+		height: 15px;
+		width: 15px;
+	}
+	.gst
+	{
+		top:18.5%;
+		left: 42%;
+		height: 20px;
+		width: 20px;
+	}
+	.ga
+	{
+		top:14%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}
+
+
+
+/* iPads (portrait and landscape) ----------- */
+/*@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {*/
+/* Styles */
+	/*.android
+	{
+		top:21%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}*/
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+/* Styles */
+	.android
+	{
+		top:42%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 40px;
+		width: 40px;
+	}
+	.vr
+	{
+		top:15%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.iot
+	{
+		top:28%;
+		left: 57%;
+		height: 55px;
+		width: 44px;
+	}
+	.ios
+	{
+		top:15%;
+		left: 60%;
+		height: 40px;
+		width: 40px;
+	}
+	.web
+	{
+		top:47%;
+		left: 59%;
+		height: 35px;
+		width: 35px;
+	}
+	.gst
+	{
+		top:37%;
+		left: 42%;
+		height: 60px;
+		width: 60px;
+	}
+	.ga
+	{
+		top:28%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+/* Styles */
+	.android
+	{
+		top:42%;
+		left: 50%;
+		height: 35px;
+		width: 35px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 35px;
+		width: 35px;
+	}
+	.vr
+	{
+		top:15%;
+		left: 50%;
+		height: 35px;
+		width: 35px;
+	}
+	.iot
+	{
+		top:28%;
+		left: 57%;
+		height: 50px;
+		width: 39px;
+	}
+	.ios
+	{
+		top:15%;
+		left: 60%;
+		height: 35px;
+		width: 35px;
+	}
+	.web
+	{
+		top:47%;
+		left: 59%;
+		height: 30px;
+		width: 30px;
+	}
+	.gst
+	{
+		top:37%;
+		left: 42%;
+		height: 55px;
+		width: 55px;
+	}
+	.ga
+	{
+		top:28%;
+		left: 50%;
+		height: 35px;
+		width: 35px;
+	}
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+/* Styles */
+	.android
+	{
+		top:42%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 40px;
+		width: 40px;
+	}
+	.vr
+	{
+		top:15%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.iot
+	{
+		top:28%;
+		left: 57%;
+		height: 55px;
+		width: 44px;
+	}
+	.ios
+	{
+		top:15%;
+		left: 60%;
+		height: 40px;
+		width: 40px;
+	}
+	.web
+	{
+		top:47%;
+		left: 59%;
+		height: 40px;
+		width: 40px;
+	}
+	.gst
+	{
+		top:37%;
+		left: 42%;
+		height: 60px;
+		width: 60px;
+	}
+	.ga
+	{
+		top:28%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+/* Styles */
+	.android
+	{
+		top:42%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 40px;
+		width: 40px;
+	}
+	.vr
+	{
+		top:15%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+	.iot
+	{
+		top:28%;
+		left: 57%;
+		height: 55px;
+		width: 44px;
+	}
+	.ios
+	{
+		top:15%;
+		left: 60%;
+		height: 40px;
+		width: 40px;
+	}
+	.web
+	{
+		top:47%;
+		left: 59%;
+		height: 40px;
+		width: 40px;
+	}
+	.gst
+	{
+		top:37%;
+		left: 42%;
+		height: 60px;
+		width: 60px;
+	}
+	.ga
+	{
+		top:28%;
+		left: 50%;
+		height: 40px;
+		width: 40px;
+	}
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+/* Styles */
+.android
+	{
+		top:26%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.amazon
+	{
+		top:15%;
+		left: 43%;
+		height: 15px;
+		width: 15px;
+	}
+	.vr
+	{
+		top:12.5%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.iot
+	{
+		top:19%;
+		left: 57%;
+		height: 22.5px;
+		width: 22px;
+	}
+	.ios
+	{
+		top:12.5%;
+		left: 60%;
+		height: 15px;
+		width: 15px;
+	}
+	.web
+	{
+		top:28.5%;
+		left: 59%;
+		height: 15px;
+		width: 15px;
+	}
+	.gst
+	{
+		top:23.5%;
+		left: 42%;
+		height: 20px;
+		width: 20px;
+	}
+	.ga
+	{
+		top:19%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}
+
+/* iPhone 6 ---------- */
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 768px) 
+{ 
+/* STYLES GO HERE */
+	.android
+	{
+		top:43%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.amazon
+	{
+		top:15%;
+		left: 43%;
+		height: 15px;
+		width: 15px;
+	}
+	.vr
+	{
+		top:12.5%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.iot
+	{
+		top:25%;
+		left: 57%;
+		height: 15px;
+		width: 15px;
+	}
+	.ios
+	{
+		top:14%;
+		left: 60%;
+		height: 15px;
+		width: 15px;
+	}
+	.web
+	{
+		top:40%;
+		left: 59%;
+		height: 15px;
+		width: 15px;
+	}
+	.gst
+	{
+		top:30%;
+		left: 42%;
+		height: 20px;
+		width: 20px;
+	}
+	.ga
+	{
+		top:29%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}
+
+@media only screen
+and (min-device-width : 600px)
+and (max-device-width : 768px) {
+/* Styles */
+	.android
+	{
+		top:42%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 15px;
+		width: 15px;
+	}
+	.vr
+	{
+		top:15%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.iot
+	{
+		top:28%;
+		left: 57%;
+		height: 15px;
+		width: 15px;
+	}
+	.ios
+	{
+		top:15%;
+		left: 60%;
+		height: 15px;
+		width: 15px;
+	}
+	.web
+	{
+		top:47%;
+		left: 59%;
+		height: 15px;
+		width: 15px;
+	}
+	.gst
+	{
+		top:37%;
+		left: 42%;
+		height: 20px;
+		width: 20px;
+	}
+	.ga
+	{
+		top:28%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}
+
+@media only screen 
+and (min-device-width : 481px) 
+and (max-device-width : 600px)  { 
+/* STYLES GO HERE */
+ 	.android
+	{
+		top:45%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 15px;
+		width: 15px;
+	}
+	.vr
+	{
+		top:18%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+	.iot
+	{
+		top:30%;
+		left: 57%;
+		height: 15px;
+		width: 15px;
+	}
+	.ios
+	{
+		top:20%;
+		left: 60%;
+		height: 15px;
+		width: 15px;
+	}
+	.web
+	{
+		top:45%;
+		left: 59%;
+		height: 15px;
+		width: 15px;
+	}
+	.gst
+	{
+		top:40%;
+		left: 42%;
+		height: 20px;
+		width: 20px;
+	}
+	.ga
+	{
+		top:34%;
+		left: 50%;
+		height: 15px;
+		width: 15px;
+	}
+}
+
+@media only screen 
+and (min-device-width : 50px) 
+and (max-device-width : 374px)  { 
+/* STYLES GO HERE */
+ 	.android
+	{
+		top:45%;
+		left: 50%;
+		height: 0px;
+		width: 0px;
+	}
+	.amazon
+	{
+		top:20%;
+		left: 43%;
+		height: 0px;
+		width: 0px;
+	}
+	.vr
+	{
+		top:18%;
+		left: 50%;
+		height: 0px;
+		width: 0px;
+	}
+	.iot
+	{
+		top:30%;
+		left: 57%;
+		height: 0px;
+		width: 0px;
+	}
+	.ios
+	{
+		top:20%;
+		left: 60%;
+		height: 0px;
+		width: 0px;
+	}
+	.web
+	{
+		top:45%;
+		left: 59%;
+		height: 0px;
+		width: 0px;
+	}
+	.gst
+	{
+		top:40%;
+		left: 42%;
+		height: 0px;
+		width: 0px;
+	}
+	.ga
+	{
+		top:34%;
+		left: 50%;
+		height: 0px;
+		width: 0px;
+	}
+}
