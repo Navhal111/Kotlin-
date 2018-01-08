@@ -1,0 +1,155 @@
+<section id="page-breadcrumb">
+    <div class="vertical-center sun">
+         <div class="container">
+            <div class="row">
+                <div class="action" style="background-image: url({{.Site.BaseURL }}images/home/tour-bg.png);">
+                    <div class="col-sm-12">
+                        <h1 class="title" style="color:#f9fcf6">
+                            <span class="letter" data-letter="A">About Us</span></h1>
+                        <p style="color:#f9fcf6" >Why our Clients love to work with us.</p>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-company" class="padding-top wow fadeInUp" data-wow-duration="400ms" data-wow-delay="400ms">
+        <div class="container">
+          {{ $about := getJSON "/data/aboutus/about.json" }}
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <img src="/images/aboutus/5.png" class="margin-bottom" alt="">
+                    <h1 class="margin-bottom">About Our Company</h1>
+                    <p>{{ $about.about }}<br>{{ $about.about2 }}</p>
+
+                </div>
+            </div>
+        </div>
+</section>
+<section id="services">
+<div class="container">
+    <div class="row">
+      {{ $products := getJSON "/data/header/servers.json" }}
+      {{ range $products }}
+        <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <div class="single-service">
+                <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="{{ .delay }}">
+                    <img style="height:200px;weight:150px;" src="/{{ .image }}" alt="">
+                </div>
+                <h2>{{ .title }}</h2>
+                <p>{{ .des}}</p>
+            </div>
+        </div>
+      {{ end}}
+    </div>
+</div>
+</section>
+<section id="company-information" class="padding-top">
+    <div class="container">
+        <div class="row">
+          <div class="about-us">
+            <div class="col-sm-7 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <h2 class="bold" >About Pistalix</h2>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <img src="/images/aboutus/6.png" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-sm-7">
+                        <h3 class="top-zero">Who we are</h3>
+                        <p> {{ $about.who }}<br> <br>{{ $about.who1 }} </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-5 wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="our-skills">
+                    <h2 class="bold">Our Skills</h2>
+                    {{ $skill := getJSON "/data/aboutus/skill.json" }}
+                      {{ range $skill }}
+                    <div class="single-skill">
+                        <h3>{{ .title }}</h3>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar"  data-transition="{{ .per }}">{{ .per }}%</div>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+          </div>
+        </div>
+    </div>
+</section>
+
+  <br>
+  <section id="team">
+      <div class="container">
+          <div class="row">
+            <h1 class="title text-center wow fadeInDown" data-wow-duration="500ms" data-wow-delay="300ms">Meet the Team</h1>
+            <p class="text-center wow fadeInDown" data-wow-duration="400ms" data-wow-delay="400ms">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
+            Ut enim ad minim veniam, quis nostrud </p>
+            <div id="team-carousel" class="carousel slide wow fadeIn" data-ride="carousel" data-wow-duration="400ms" data-wow-delay="400ms">
+              <ol class="carousel-indicators visible-xs">
+                  <li data-target="#team-carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#team-carousel" data-slide-to="1"></li>
+              </ol>
+
+            <div class="carousel-inner">
+              <div class="item active">
+                {{ $team := getJSON "/data/aboutus/team.json" }}
+                {{ range $team }}
+                <div class="col-sm-3 col-xs-6">
+                    <div class="team-single-wrapper">
+                        <div class="team-single">
+                            <div class="person-thumb">
+                                <img src="/{{.image }}" class="img-responsive" alt="">
+                            </div>
+                            <div class="social-profile">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="person-info">
+                            <h2>{{ .Name }}</h2>
+                            <p>{{ .Posittion }} &amp; {{ .Work }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+              </div>
+              <div class="item">
+                {{ $team2 := getJSON "/data/aboutus/team2.json" }}
+                {{ range $team2 }}
+                <div class="col-sm-3 col-xs-6">
+                    <div class="team-single-wrapper">
+                        <div class="team-single">
+                            <div class="person-thumb">
+                                <img src="/{{.image }}" class="img-responsive" alt="">
+                            </div>
+                            <div class="social-profile">
+                                <ul class="nav nav-pills">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="person-info">
+                            <h2>{{ .Name }}</h2>
+                            <p>{{ .Posittion }} &amp; {{ .Work }}</p>
+                        </div>
+                    </div>
+                </div>
+                {{ end }}
+              </div>
+          </div>
+          <a class="left team-carousel-control hidden-xs" href="#team-carousel" data-slide="prev">left</a>
+          <a class="right team-carousel-control hidden-xs" href="#team-carousel" data-slide="next">right</a>
+      </div>
+    </div>
+  </div>
+   </section>

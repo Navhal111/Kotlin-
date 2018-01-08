@@ -1,0 +1,47 @@
+
+
+<button class="signin-google">Sign in with Google (redirect)</button><br>
+<button class="signin-google-popup">Sign in with Google (popup)</button><br>
+<br><p>--- or ---</p>
+<label>Email</label><input type="text" id="email"><br>
+<label>Password</label><input type="password" id="password"><br>
+<button class="signin-db">Sign in with Email/Password</button>
+
+<script src="https://cdn.auth0.com/w2/auth0-7.1.min.js"></script>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script>
+  var auth0 = new Auth0({
+    domain:         'riteshlight.auth0.com',
+    clientID:       'ilCOEZU0TpNsVniL3EUm8AC6jQw521Ic',
+    callbackURL:    'http://192.168.0.11:5000/callback'
+  });
+  // sign-in with social provider with plain redirect
+  $('.signin-google').on('click', function() {
+    auth0.signin({connection: 'google-oauth2'}); // use connection identifier
+  });
+  // sign-in with social provider using a popup (window.open)
+  $('.signin-google-popup').on('click', function() {
+    auth0.signin({popup: true, connection: 'google-oauth2'},
+                function(err, profile, id_token, access_token, state) {
+                    /*
+                      store the profile and id_token in a cookie or local storage
+                        $.cookie('profile', profile);
+                        $.cookie('id_token', id_token);
+                    */
+                });
+  });
+  $('.signin-db').on('click', function() {
+    auth0.signin({
+      connection: 'foo',
+      username: 'bar',
+      password: 'foobar'
+    },
+    function (err, profile, id_token, access_token, state) {
+      /*
+          store the profile and id_token in a cookie or local storage
+            $.cookie('profile', profile);
+            $.cookie('id_token', id_token);
+        */
+    });
+  });
+</script>

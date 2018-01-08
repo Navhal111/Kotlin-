@@ -1,0 +1,27 @@
+[
+{
+  "Name":"Ritesh",
+  "Posittion":"Employee",
+  "Work":"Developer",
+  "image":"images/aboutus/1.jpg"
+
+},{
+  "Name":"Milan",
+  "Posittion":"Employee",
+  "Work":"Developer",
+  "image":"images/aboutus/2.jpg"
+
+},{
+  "Name":"Harsh",
+  "Posittion":"Employee",
+  "Work":"Developer",
+  "image":"images/aboutus/1.jpg"
+
+},{
+  "Name":"Mitesh",
+  "Posittion":"CEO",
+  "Work":"Developer",
+  "image":"images/aboutus/2.jpg"
+
+}
+]

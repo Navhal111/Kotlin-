@@ -1,0 +1,39 @@
+baseurl = "/"
+languageCode = "en-us"
+title = "pistalix"
+
+[menu]
+[[menu.main]]
+    name = "Home"
+    url  = "/"
+    weight = 1
+[[menu.main]]
+    name = "About Us"
+    url  = "/aboutus/"
+    weight = 2
+[[menu.main]]
+    name = "Products"
+    identifier = "products"
+    url  = "/Products/"
+    weight = 3
+[[menu.main]]
+    name = "Careers"
+    url  = "/Careers/"
+    weight = 4
+[[menu.main]]
+    name = "Services"
+    url  = "/services/"
+    weight = 5
+[[menu.main]]
+    name = "Table"
+    url  = "/table"
+    weight = 6
+[[menu.main]]
+    name = "Contact us"
+    url  = "/contact/"
+    weight = 7
+[[menu.main]]
+    name = "Pistalix TV"
+    parent = "products"
+    url  = "/TV"
+    weight = 7

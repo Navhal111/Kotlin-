@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+      {{ $products := getJSON "/data/header/servers.json" }}
+      {{ range $products }}
+        <div class="col-sm-4 text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <div class="single-service">
+                <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="{{ .delay }}">
+                    <img style="height:150px;weight:50px;" src="{{ .Site.BaseURL }}{{ .image }}" alt="">
+                </div>
+                <h2>{{ .title }}</h2>
+                <p>{{ .des}}</p>
+            </div>
+        </div>
+      {{ end}}
+    </div>
+</div>

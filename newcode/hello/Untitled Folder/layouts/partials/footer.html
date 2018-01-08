@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+          <div class="testimonial bottom">
+              <h2>Contact</h2>
+              {{ $products := getJSON "/data/header/media.json" }}
+                    {{ range $products }}
+              <div class="media">
+                <div class="pull-left">
+                    <a href="#"><img src="images/home/profile1.png" alt=""></a>
+                </div>
+                  <div class="media-body">
+                      <blockquote><a href="#">{{ .link }}</a></blockquote>
+                  </div>
+               </div>
+               {{end}}
+          </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+          <div class="contact-info bottom">
+            {{ $detailes := getJSON "/data/header/contact.json" }}
+              <h2>Contacts</h2>
+              <address>
+              E-mail: <a href="mailto:{{ $detailes.email }}">email@email.com</a> <br>
+              Phone: +91 {{$detailes.contact }} <br>
+              Fax: +91 {{ $detailes.fax }}<br>
+              </address>
+
+              <h2>Address</h2>
+              <address>
+              {{ $detailes.add | safeHTML}}
+              </address>
+          </div>
+      </div>
+      <div class="col-md-4 col-sm-12">
+          <div class="contact-form bottom">
+              <h2>Send a message</h2>
+              <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+                  <div class="form-group">
+                      <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                  </div>
+                  <div class="form-group">
+                      <input type="email" name="email" class="form-control" required="required" placeholder="Email Id">
+                  </div>
+                  <div class="form-group">
+                      <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
+                  </div>
+                  <div class="form-group">
+                      <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+</div>
+<div>
+    <div class="copyright-text text-center footer-img" style="background-image: url(/images/home/tour-bg.png);">
+        <img src="{{ .Site.BaseURL }}images/footer_logo.png" style=" margin-top: 10px; height:5%; width: 5%;"/> <br>
+        <p style="color:#f9fcf6">&copy; Pistalix 2017. All Rights Reserved.</p>
+        <p style="color:#f9fcf6">Designed by <a style="color:#5eca3e" target="_blank" href="{{ .Site.BaseURL }}">Light</a></p>
+    </div>
+</div>
